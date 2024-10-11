@@ -2,11 +2,13 @@
     text-transform: capitalize;
     margin: 0;
     padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 :root {
-    --main-color: #e95420;
+    --main-color: #22b3ad;
+    --second-color:#feb23a;
   }
-.btn-outline-orange {
+.btn-outline-Color {
     --bs-btn-color: var(--main-color);
     --bs-btn-border-color: var(--main-color);
     --bs-btn-hover-color: #fff;
@@ -23,7 +25,7 @@
     --bs-gradient: none;
 }
 
-.btn-orange {
+.btn-Color {
     --bs-btn-color: #fff;
     --bs-btn-bg: var(--main-color);
     --bs-btn-border-color: var(--main-color);
@@ -44,8 +46,11 @@ a{
     cursor: pointer;
 }
 
-.text-orange {
+.text-Color {
     color: var(--main-color);
+}
+.second-Color {
+    color: var(--second-color);
 }
 
 
