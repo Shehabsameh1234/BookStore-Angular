@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HomeSeriveService {
   baseUrl: string = environment.apiUrl;
   constructor(private _HttpClient:HttpClient ) { }
-  getAllBooks():Observable<any>{
-    return this._HttpClient.get(`${this.baseUrl}/Books`)
+  getAllBooks(pageIndex:number=1,pageSize:number=4):Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}`)
   }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeSeriveService } from './home-serive.service';
+import { Books } from './books';
+
 
 @Component({
   selector: 'app-home',
@@ -8,20 +10,67 @@ import { HomeSeriveService } from './home-serive.service';
 })
 export class HomeComponent {
 
-  books!:any[]
-  constructor(private _HomeSeriveService:HomeSeriveService){}
+  books!: Books[]
+  ifError: boolean = false
+  numberOfPages!: number
+  pageIndex!: number
+
+  constructor(private _HomeSeriveService: HomeSeriveService) { }
   ngOnInit(): void {
-    
+
     this._HomeSeriveService.getAllBooks().subscribe({
-      next:(res)=>{
-        console.log(res.data);
-        
+      next: (res) => {
+        this.books = res.data
+        this.pageIndex = res.pageIndex
+        this.numberOfPages = Math.ceil(res.count / res.pageSize)
       },
-      error:(error)=>{
-        console.log(error);
-        
+      error: () => {
+        this.ifError = true
       }
     })
-    
+  }
+
+  reloadPage() {
+    location.reload()
+  }
+
+  getPgaeByNumber(pageNumber: number) {
+    this._HomeSeriveService.getAllBooks(pageNumber).subscribe({
+      next: (res) => {
+        this.books = res.data
+        this.pageIndex = res.pageIndex
+      },
+      error: () => {
+        this.ifError = true
+      }
+    })
+  }
+  getNextPage()
+  {
+    this.pageIndex++
+    this._HomeSeriveService.getAllBooks(this.pageIndex).subscribe({
+      next: (res) => {
+        this.books = res.data
+        this.pageIndex = res.pageIndex
+      
+      },
+      error: () => {
+        this.ifError = true
+      }
+    })
+  }
+  getPreviousPage()
+  {
+    this.pageIndex--
+    this._HomeSeriveService.getAllBooks(this.pageIndex).subscribe({
+      next: (res) => {
+        this.books = res.data
+        this.pageIndex = res.pageIndex
+      
+      },
+      error: () => {
+        this.ifError = true
+      }
+    })
   }
 }

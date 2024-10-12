@@ -5,94 +5,33 @@
 <h3 class="text-center second-Color mt-3">All Books</h3>
 
 <section class="container p-5 mt-5">
+    <h2 *ngIf="ifError" class="text-center mt-5">!oops somthing error , please <a class="text-Color" (click)="reloadPage()">reload page</a></h2>
     <div class="row text-center p-3 ">
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
+        <div class="col-md-6 col-12 col-lg-3 my-4 " *ngFor="let book of books ,let i=index">
             <div class="position-relative">
                 <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
+                <img  [src]="book.pictureUrl" [alt]="book.name">
                 <span class="img-span bg-light">quick view</span>
                 </div>
-                <span class="bg-success">shehab sameh</span>
+                <span class="bg-success">{{book.author}}</span>
             </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
+            <p class="px-3">{{book.name}}</p>
+            <p>{{book.price}} EGP</p>
             <button class="btn btn-dark w-100">Add To cart</button>
         </div>
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
-            <div class="position-relative">
-                <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
-                <span class="img-span bg-light">quick view</span>
-                </div>
-                <span class="bg-success">shehab sameh</span>
-            </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
-            <button class="btn btn-dark w-100">Add To cart</button>
-        </div>
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
-            <div class="position-relative">
-                <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
-                <span class="img-span bg-light">quick view</span>
-                </div>
-                <span class="bg-success">shehab sameh</span>
-            </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
-            <button class="btn btn-dark w-100">Add To cart</button>
-        </div>
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
-            <div class="position-relative">
-                <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
-                <span class="img-span bg-light">quick view</span>
-                </div>
-                <span class="bg-success">shehab sameh</span>
-            </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
-            <button class="btn btn-dark w-100">Add To cart</button>
-        </div>
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
-            <div class="position-relative">
-                <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
-                <span class="img-span bg-light">quick view</span>
-                </div>
-                <span class="bg-success">shehab sameh</span>
-            </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
-            <button class="btn btn-dark w-100">Add To cart</button>
-        </div>
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
-            <div class="position-relative">
-                <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
-                <span class="img-span bg-light">quick view</span>
-                </div>
-                <span class="bg-success">shehab sameh</span>
-            </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
-            <button class="btn btn-dark w-100">Add To cart</button>
-        </div>
-        <div class="col-md-6 col-12 col-lg-3 my-4  ">
-            <div class="position-relative">
-                <div class="position-relative">
-                <img  src="assets/images/9ac831_23a235abb1854489aaafcff8da6ad2a6~mv2.jpg" alt="">
-                <span class="img-span bg-light">quick view</span>
-                </div>
-                <span class="bg-success">shehab sameh</span>
-            </div>
-            <p class="px-3">What's Happening to Me?: Boy (Facts Of Life)</p>
-            <p>250 EGP</p>
-            <button class="btn btn-dark w-100">Add To cart</button>
-        </div>
-       
     </div>
+    
 </section> 
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination d-flex justify-content-center ">
+      <li class="page-item"><button class="page-link" (click)="getPreviousPage()" [disabled]="pageIndex === 1" >Previous</button></li>
+        <li class="page-item"><a class="page-link d-inline-block" *ngFor="let _ of [].constructor(numberOfPages); let i=index" (click)="getPgaeByNumber(i+1)" >{{i+1}}</a></li>
+      <li class="page-item"><button class="page-link" (click)="getNextPage()" [disabled]="pageIndex === numberOfPages" >Next</button></li>
+    </ul>
+  </nav>
+
+
    
 
 

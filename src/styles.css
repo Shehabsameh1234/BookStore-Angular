@@ -69,3 +69,12 @@ a{
 .text-pointer{
     cursor: pointer;
 }
+
+.page-link {
+    
+    color: var(--second-color);
+    
+}
+.page-link:hover {
+    color: #c98d2d;
+}
