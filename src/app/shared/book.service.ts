@@ -5,10 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeSeriveService {
+export class BookService {
   baseUrl: string = environment.apiUrl;
   constructor(private _HttpClient:HttpClient ) { }
   getAllBooks(pageIndex:number=1,pageSize:number=4):Observable<any>{
     return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}`)
+  }
+  getCategories():Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Books/categories`)
   }
 }

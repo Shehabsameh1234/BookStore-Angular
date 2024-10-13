@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HomeSeriveService } from './home-serive.service';
-import { Books } from './books';
+
+import { Books } from '../shared/books';
+import { BookService } from '../shared/book.service';
 
 
 @Component({
@@ -15,10 +16,10 @@ export class HomeComponent {
   numberOfPages!: number
   pageIndex!: number
 
-  constructor(private _HomeSeriveService: HomeSeriveService) { }
+  constructor(private _BookService: BookService) { }
   ngOnInit(): void {
 
-    this._HomeSeriveService.getAllBooks().subscribe({
+    this._BookService.getAllBooks().subscribe({
       next: (res) => {
         this.books = res.data
         this.pageIndex = res.pageIndex
@@ -35,7 +36,7 @@ export class HomeComponent {
   }
 
   getPgaeByNumber(pageNumber: number) {
-    this._HomeSeriveService.getAllBooks(pageNumber).subscribe({
+    this._BookService.getAllBooks(pageNumber).subscribe({
       next: (res) => {
         this.books = res.data
         this.pageIndex = res.pageIndex
@@ -48,7 +49,7 @@ export class HomeComponent {
   getNextPage()
   {
     this.pageIndex++
-    this._HomeSeriveService.getAllBooks(this.pageIndex).subscribe({
+    this._BookService.getAllBooks(this.pageIndex).subscribe({
       next: (res) => {
         this.books = res.data
         this.pageIndex = res.pageIndex
@@ -62,7 +63,7 @@ export class HomeComponent {
   getPreviousPage()
   {
     this.pageIndex--
-    this._HomeSeriveService.getAllBooks(this.pageIndex).subscribe({
+    this._BookService.getAllBooks(this.pageIndex).subscribe({
       next: (res) => {
         this.books = res.data
         this.pageIndex = res.pageIndex
