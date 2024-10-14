@@ -22,7 +22,7 @@
     </div>
 </section> 
 
-<nav aria-label="Page navigation example">
+<nav *ngIf="!ifError" aria-label="Page navigation example">
     <ul class="pagination d-flex justify-content-center ">
       <li class="page-item"><button class="page-link" (click)="getPreviousPage()" [disabled]="pageIndex === 1" >Previous</button></li>
         <li class="page-item"><a class="page-link d-inline-block" *ngFor="let _ of [].constructor(numberOfPages); let i=index" (click)="getPgaeByNumber(i+1)" >{{i+1}}</a></li>
