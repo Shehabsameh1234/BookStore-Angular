@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { BookService } from '../shared/book.service';
 import { Books } from '../shared/books';
-
+import { ViewChild, ElementRef } from '@angular/core';
+declare var bootstrap: any; // Make sure Bootstrap JS is loaded
 @Component({
   selector: 'app-book-shop',
   templateUrl: './book-shop.component.html',
   styleUrls: ['./book-shop.component.css']
 })
 export class BookShopComponent {
-
-
+  modalView: boolean = true;
+  @ViewChild('modalRef') modalElement!: ElementRef;
   books!: Books[]
   categories!: any[]
   ifError: boolean = false
@@ -18,9 +19,21 @@ export class BookShopComponent {
   categoryId!:any
   isFilter:boolean=false
 
+  
   constructor(private _BookService: BookService) { }
-  ngOnInit(): void {
+  
+  // Toggle Modal based on boolean value
+  toggleModal() {
+    const modalInstance = new bootstrap.Modal(this.modalElement.nativeElement);
     
+    if (this.modalView) {
+      modalInstance.show(); // Show the modal
+    } else {
+      modalInstance.hide(); // Hide the modal
+    }
+  }
+
+  ngOnInit(): void {
     this._BookService.getAllBooks(1, 3).subscribe({
       next: (res) => {
         this.categoryId=null
@@ -45,11 +58,6 @@ export class BookShopComponent {
       }
     })
   }
-
-  reloadPage() {
-    location.reload()
-  }
-
   loadMore() {
     this.pageSize = this.pageSize + 3
     if(this.categoryId==null){
@@ -92,9 +100,13 @@ export class BookShopComponent {
         this.count = res.count
       },
       error: () => {
-        this.ifError = true
+        this.toggleModal() 
       }
     })
+  }
+
+  reloadPage() {
+    location.reload()
   }
 
 }

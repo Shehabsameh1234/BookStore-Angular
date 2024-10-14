@@ -3,7 +3,7 @@
       (click)="reloadPage()">reload page</a></h2>
   <div class="text-end mt-5">
     <div *ngIf="!ifError" class="btn-group  ">
-      <button  class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-bs-toggle="dropdown"
+      <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         sort by
       </button>
@@ -15,21 +15,35 @@
     </div>
   </div>
   <div class="row text-center p-3 ">
-    <div class=" col-lg-4 my-4 display   ">
-      <p class="text-start">Filter by</p>
-      <hr>
-      <div *ngFor="let cat of categories ,let i=index">
-        <p (click)="getByCategory(cat.id)" class="text-pointer">{{cat.name}}</p>
+    <div class=" col-lg-4 my-4 display ">
+      <div class="accordion  " id="accordionPanelsStayOpenExample">
+        <div class="accordion-item shadow">
+          <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne">
+              Filter By
+            </button>
+          </h3>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+
+              <div *ngFor="let cat of categories ,let i=index">
+                <p (click)="getByCategory(cat.id)" class="text-pointer">{{cat.name}}</p>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+        <button (click)="ngOnInit()" *ngIf="isFilter" class="btn btn-dark mt-5 ms-2">Clear Filter <i class="fa-solid fa-trash ms-2"></i></button>
       </div>
-      <hr>
-      <p (click)="ngOnInit()" *ngIf="isFilter"  class="text-start text-pointer">clear filter</p>
-     
+
     </div>
     <div class=" col-lg-8">
       <div class="row text-center  ">
         <div class="col-xl-4 col-md-6 col-12 col-lg-6 my-4" *ngFor="let book of books ,let i=index">
           <div class="p-md-4 p-lg-0 p-0">
-            <div class="position-relative">
+            <div class="position-relative overflow-hidden">
               <div class="position-relative">
                 <img class="text-pointer" [src]="book.pictureUrl" [alt]="book.name">
                 <span class="img-span bg-light text-pointer">quick view</span>
@@ -42,7 +56,8 @@
           </div>
         </div>
         <div>
-          <button *ngIf="!ifError" class="btn btn-outline-Color px-5 mt-3" (click)=" loadMore()" [disabled]="pageSize>=count">load more</button>
+          <button *ngIf="!ifError" class="btn btn-outline-Color px-5 mt-3" (click)=" loadMore()"
+            [disabled]="pageSize>=count">load more</button>
         </div>
       </div>
     </div>
@@ -51,3 +66,21 @@
   </div>
 
 </section>
+
+<!-- Modal if error -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  #modalRef>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        !Oops no books in this category
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
