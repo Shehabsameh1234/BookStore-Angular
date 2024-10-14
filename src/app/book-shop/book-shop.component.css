@@ -39,7 +39,7 @@ span.author-color {
     opacity: 0;
 }
 
-.col-lg-4:hover .img-span {
+.col-lg-6:hover .img-span {
     height: 50px;
     opacity: 1;
 }
