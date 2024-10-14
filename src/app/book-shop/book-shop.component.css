@@ -54,18 +54,16 @@ button {
 }
 
 
-@media (min-width: 0px) and (max-width: 500px) {
-
-    .container {
-        padding: 40px;
-    }
-
-}
-
-@media (min-width: 0px) and (max-width: 900px) {
+@media (min-width: 0px) and (max-width: 991px) {
 
     .container {
         padding: 20px;
     }
+    .display
+    {
+        display: none;
+    }
+
+
 
 }

@@ -14,4 +14,7 @@ export class BookService {
   getCategories():Observable<any>{
     return this._HttpClient.get(`${this.baseUrl}/Books/categories`)
   }
+  getByCategory(pageIndex:number=1,pageSize:number=4,categoryId:number):Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}&CategoryId=${categoryId}`)
+  }
 }
