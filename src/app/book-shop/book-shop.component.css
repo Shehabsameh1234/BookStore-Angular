@@ -52,15 +52,22 @@ button {
     padding: 30px 100px;
 }
 
+.display-offcanvas{
+    display: none;
+}
+
 
 @media (min-width: 0px) and (max-width: 991px) {
 
     .container {
         padding: 20px;
     }
-    .display
+    .display-accordion
     {
         display: none;
+    }
+    .display-offcanvas{
+        display: block;
     }
 
 
