@@ -27,14 +27,15 @@
     <!-- offcanvas -->
 
     <div *ngIf="!ifError" class="dropdown">
-      <button class="btn btn-outline-Color dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-outline-Color dropdown-toggle " type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
         Sort By
       </button>
       <ul class="dropdown-menu dropdown-menu-light">
-        <li><a class="dropdown-item " (click)="sortBy('priceAsc')" >price (low to high)</a></li>
-        <li><a class="dropdown-item"(click)="sortBy('priceDesc')" >price (high to low)</a></li>
-        <li><a class="dropdown-item" (click)="sortBy('nameAsc')" >name A-Z</a></li>
-        <li><a class="dropdown-item" (click)="sortBy('nameDesc')" >name Z-A</a></li>
+        <li><a class="dropdown-item " (click)="sortBy('priceAsc')">price (low to high)</a></li>
+        <li><a class="dropdown-item" (click)="sortBy('priceDesc')">price (high to low)</a></li>
+        <li><a class="dropdown-item" (click)="sortBy('nameAsc')">name A-Z</a></li>
+        <li><a class="dropdown-item" (click)="sortBy('nameDesc')">name Z-A</a></li>
       </ul>
     </div>
   </div>
@@ -107,3 +108,4 @@
     </div>
   </div>
 </div>
+
