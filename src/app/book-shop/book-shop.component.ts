@@ -94,7 +94,6 @@ export class BookShopComponent {
     this._BookService.getByCategory(1, 4, this.categoryId).subscribe({
       next: (res) => {
         this.isFilter = true
-        this.ifError = false
         this.books = res.data
         this.pageSize = res.pageSize
         this.count = res.count
@@ -109,10 +108,8 @@ export class BookShopComponent {
   sortBy(sortBy: string) {
     this.sortedBy = sortBy
     if (this.categoryId == null) {
-
       this._BookService.getAllBooks(1, this.pageSize, this.sortedBy).subscribe({
         next: (res) => {
-          this.categoryId = null
           this.isFilter = true
           this.books = res.data
           this.pageSize = res.pageSize
@@ -126,12 +123,11 @@ export class BookShopComponent {
     else {
       this._BookService.getByCategory(1, this.pageSize, this.categoryId, this.sortedBy).subscribe({
         next: (res) => {
-          this.ifError = true
           this.books = res.data
           this.pageSize = res.pageSize
           this.count = res.count
         },
-        error: () => {
+        error: (error) => {
           this.ifError = true
         }
       })
