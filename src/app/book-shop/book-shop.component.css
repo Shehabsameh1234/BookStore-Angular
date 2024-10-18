@@ -23,7 +23,7 @@ span.author-color {
     opacity: 0;
 }
 
-.col-lg-6:hover .img-span {
+.col-xl-3:hover .img-span {
     height: 50px;
     opacity: 1;
 }
@@ -32,10 +32,10 @@ img{
     transition: all .5s;
 }
 
-.col-lg-6:hover img {
+.col-xl-3:hover img {
    transform: scale(1.1);
 }
-.col-lg-6:hover button.btn-dark {
+.col-xl-3:hover button.btn-dark {
     opacity: 1;
 }
 
@@ -56,6 +56,10 @@ button {
     display: none;
 }
 
+.dropdown-item:hover {
+    background-color: var(--second-color);
+    color: white;
+}
 
 @media (min-width: 0px) and (max-width: 991px) {
 
@@ -69,7 +73,8 @@ button {
     .display-offcanvas{
         display: block;
     }
-
-
-
 }
+
+
+
+  

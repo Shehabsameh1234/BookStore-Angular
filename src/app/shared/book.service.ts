@@ -8,13 +8,13 @@ import { Observable } from 'rxjs';
 export class BookService {
   baseUrl: string = environment.apiUrl;
   constructor(private _HttpClient:HttpClient ) { }
-  getAllBooks(pageIndex:number=1,pageSize:number=4):Observable<any>{
-    return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}`)
+  getAllBooks(pageIndex:number=1,pageSize:number=4,sort:string="nameAsc"):Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}&sort=${sort}`)
   }
   getCategories():Observable<any>{
     return this._HttpClient.get(`${this.baseUrl}/Books/categories`)
   }
-  getByCategory(pageIndex:number=1,pageSize:number=4,categoryId:number):Observable<any>{
-    return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}&CategoryId=${categoryId}`)
+  getByCategory(pageIndex:number=1,pageSize:number=4,categoryId:number,sort:string="nameAsc"):Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Books?pageIndex=${pageIndex}&pageSize=${pageSize}&CategoryId=${categoryId}&sort=${sort}`)
   }
 }
