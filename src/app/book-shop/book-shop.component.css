@@ -39,7 +39,7 @@ img{
     opacity: 1;
 }
 
-button.w-100{
+.button-hover{
     opacity: 0;
     transition: all .7s;
 }
@@ -61,6 +61,12 @@ button {
     color: white;
 }
 
+.cat-hover:hover{
+    background-color: var(--second-color);
+}
+
+
+
 @media (min-width: 0px) and (max-width: 991px) {
 
     .container {
@@ -68,6 +74,9 @@ button {
     }
     .display-accordion
     {
+        display: none;
+    }
+    .display-view{
         display: none;
     }
     .display-offcanvas{

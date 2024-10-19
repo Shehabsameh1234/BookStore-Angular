@@ -19,6 +19,7 @@ export class BookShopComponent {
   categoryId!: any
   isFilter: boolean = false
   sortedBy!: string
+  book!:Books
 
 
   constructor(private _BookService: BookService) { }
@@ -35,6 +36,7 @@ export class BookShopComponent {
   }
 
   ngOnInit(): void {
+    this.getBook(1)
     this._BookService.getAllBooks(1, 4).subscribe({
       next: (res) => {
         this.categoryId = null
@@ -127,11 +129,23 @@ export class BookShopComponent {
           this.pageSize = res.pageSize
           this.count = res.count
         },
-        error: (error) => {
+        error: () => {
           this.ifError = true
         }
       })
     }
+  }
+  getBook(bookid: number) {
+    this._BookService.getBook(bookid).subscribe({
+      next: (res) => {
+        this.book = res
+        console.log(this.book);
+
+      },
+      error: () => {
+
+      }
+    })
   }
 
   reloadPage() {
