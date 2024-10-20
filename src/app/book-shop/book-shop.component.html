@@ -15,7 +15,7 @@
       <div class="offcanvas-body">
         <div class="accordion-body">
           <div *ngFor="let cat of categories ,let i=index">
-            <p (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
+            <p  (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
           </div>
           <hr>
         </div>
@@ -54,7 +54,7 @@
             <div class="accordion-body">
 
               <div *ngFor="let cat of categories ,let i=index">
-                <p (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
+                <p  (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
               </div>
               <hr>
             </div>

@@ -139,10 +139,11 @@ export class BookShopComponent {
     this._BookService.getBook(bookid).subscribe({
       next: (res) => {
         this.book = res
-        console.log(this.book);
+
 
       },
       error: () => {
+        this.ifError = true
 
       }
     })

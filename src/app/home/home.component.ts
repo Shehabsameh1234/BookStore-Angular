@@ -15,10 +15,11 @@ export class HomeComponent {
   ifError: boolean = false
   numberOfPages!: number
   pageIndex!: number
+  book!:Books
 
   constructor(private _BookService: BookService) { }
   ngOnInit(): void {
-
+    this.getBook(1)
     this._BookService.getAllBooks().subscribe({
       next: (res) => {
         this.books = res.data
@@ -68,6 +69,18 @@ export class HomeComponent {
         this.books = res.data
         this.pageIndex = res.pageIndex
       
+      },
+      error: () => {
+        this.ifError = true
+      }
+    })
+  }
+  getBook(bookid: number) {
+    this._BookService.getBook(bookid).subscribe({
+      next: (res) => {
+        this.book = res
+        console.log(this.book);
+        
       },
       error: () => {
         this.ifError = true
