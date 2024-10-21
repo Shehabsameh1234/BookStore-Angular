@@ -10,6 +10,7 @@ const routes: Routes = [
   {path:"home",component:HomeComponent},
   { path: 'notFound', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule) },
   { path: 'shop', loadChildren: () => import('./book-shop/book-shop.module').then(m => m.BookShopModule) },
+  { path: 'book', loadChildren: () => import('./book/book.module').then(m => m.BookModule) },
   {path:"**",component:NotFoundComponent},
 
   

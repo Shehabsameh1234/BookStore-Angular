@@ -1,0 +1,11 @@
+<section class="mt-5 p-5">
+    <div class="content">
+        <p class="text">
+          <!-- Display the initial part of the text and conditionally show the rest -->
+          <span>{{ displayText }}</span>
+        </p>
+      
+        <!-- Conditionally display the 'Read More' or 'Read Less' button -->
+        <button *ngIf="isLongText" (click)="toggleReadMore()">{{ isReadMore ? 'Read Less' : 'Read More' }}</button>
+      </div>
+</section>
