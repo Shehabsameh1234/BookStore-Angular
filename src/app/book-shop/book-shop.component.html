@@ -15,7 +15,7 @@
       <div class="offcanvas-body">
         <div class="accordion-body">
           <div *ngFor="let cat of categories ,let i=index">
-            <p  (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
+            <p (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
           </div>
           <hr>
         </div>
@@ -54,7 +54,7 @@
             <div class="accordion-body">
 
               <div *ngFor="let cat of categories ,let i=index">
-                <p  (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
+                <p (click)="getByCategory(cat.id)" class="text-pointer cat-hover">{{cat.name}}</p>
               </div>
               <hr>
             </div>
@@ -70,7 +70,7 @@
         <div class="col-xl-3 col-md-4 col-12  my-4" *ngFor="let book of books ,let i=index">
           <div class="p-0">
             <div class="position-relative overflow-hidden">
-              <div class="position-relative">
+              <div class="position-relative" [routerLink]="['/shop/bookinfo',book.id]">
                 <img class="text-pointer" [src]="book.pictureUrl" [alt]="book.name">
                 <span (click)="getBook(book.id)" data-bs-toggle="modal" data-bs-target="#example1Modal"
                   class="img-span bg-light text-pointer display-view ">quick view</span>

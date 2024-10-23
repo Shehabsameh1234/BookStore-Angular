@@ -9,12 +9,12 @@ import { HomeComponent } from './home/home.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    HomeComponent,
-    
+    HomeComponent, 
   ],
   imports: [
     BrowserModule,
