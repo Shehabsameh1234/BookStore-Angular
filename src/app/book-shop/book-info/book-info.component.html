@@ -1,34 +1,36 @@
-<p>book-info works! Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident temporibus expedita, delectus
-    dolorem recusandae ut. Beatae aliquid expedita eum in? Fuga sunt pariatur totam, placeat fugiat illum, ratione
-    doloremque itaque, velit assumenda nulla! Suscipit eos non explicabo consequatur quisquam consequuntur recusandae
-    aut ullam mollitia illum tempora dolor dolorum soluta, eum adipisci, voluptatem inventore dignissimos provident
-    obcaecati? Aspernatur aliquid quos sed possimus, ad ut reprehenderit at sit quia accusantium, nesciunt quidem
-    placeat, expedita totam et unde reiciendis itaque eum voluptas dolor! Tenetur blanditiis corporis, excepturi saepe
-    culpa ducimus repellendus assumenda ex vel expedita voluptates nobis soluta. Deleniti minima iste, ducimus ea
-    dolorem quis dolorum esse, deserunt magni dolor, voluptatibus enim assumenda. Eos nostrum voluptatum cum neque
-    veniam tenetur inventore iusto dolore fugit similique velit repudiandae rem aspernatur, optio dolorum? Deleniti
-    veniam hic sapiente exercitationem necessitatibus! Neque, optio cum odio vitae totam laudantium consectetur
-    reiciendis dicta dolor provident quas architecto perferendis ipsa, ad magnam? Obcaecati ad consectetur, sunt
-    voluptatibus animi impedit magni, ipsum nam et sapiente tempore hic debitis atque voluptate quia. Provident magni
-    maxime labore? Quis est non fugiat impedit nam, perferendis neque distinctio excepturi ea beatae sed aut repellat
-    voluptates rem quos magni aliquid ad quas ex dolorum. Tempore deserunt ea eligendi, libero dolorum at neque
-    voluptatem. Voluptatem natus dolorum non, eum molestiae itaque soluta, omnis iure accusantium numquam, laborum sint
-    ipsa deleniti ex aliquid totam nisi ut pariatur sequi explicabo vitae. Reiciendis, alias? Nihil fugiat unde tenetur
-    alias accusantium quisquam! Mollitia doloremque nulla tempore ipsum repellat maxime, sint in impedit! Saepe quaerat
-    voluptas est maiores ratione maxime excepturi, blanditiis aperiam beatae laudantium facilis, sed id incidunt
-    doloribus quos eveniet voluptatem reiciendis omnis impedit nulla delectus? Perspiciatis, enim recusandae pariatur
-    quod ex nostrum itaque totam eaque temporibus, autem expedita quos officiis dignissimos eveniet et nihil?
-    Repellendus necessitatibus ratione ducimus exercitationem est nostrum quibusdam molestias, nulla ea maxime
-    temporibus cupiditate consectetur sed nam culpa beatae. Unde tempore voluptate velit hic. Esse ratione ea eligendi,
-    odit eum modi pariatur molestias aperiam amet nihil. Aperiam non magni dignissimos distinctio labore libero
-    inventore obcaecati, asperiores illum repellat quae quos veritatis corporis iusto ut dicta nesciunt provident hic at
-    suscipit? Suscipit numquam atque culpa blanditiis voluptate. Cupiditate eligendi labore optio, cum vero quia
-    exercitationem magni, vel provident natus repudiandae! Voluptatum sapiente quasi qui sunt dicta veritatis cum a
-    saepe nostrum temporibus soluta fuga hic explicabo suscipit aliquid unde minima debitis cumque architecto ipsum
-    quaerat tempora delectus, voluptas itaque. Nemo eos, soluta facere suscipit assumenda porro rerum quasi dolorem.
-    Iste tenetur fugit harum itaque numquam quos quam, fuga ipsum sed neque facere, illum possimus aut vero similique
-    non laboriosam dolorum aperiam voluptatem expedita, eum natus nemo. Doloremque culpa provident iusto laborum?
-    Expedita perspiciatis molestias, sit modi atque perferendis delectus totam vel mollitia laboriosam magnam iure
-    temporibus nemo ad minima impedit adipisci velit. Incidunt ducimus at, ea, nulla nisi placeat ipsa in animi expedita
-    similique ratione distinctio magnam ex architecto dolor. Perferendis hic eius nihil deleniti inventore assumenda
-    enim, explicabo amet in quia, eos deserunt, quidem omnis!</p>
+<section class="container p-5 mt-5 ">
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam odit, atque, vel doloremque, omnis veritatis
+        distinctio iste vero natus illo molestiae perferendis commodi? Sed, provident qui placeat nam fugiat, debitis
+        quo sapiente, laudantium blanditiis magni dolorem! Ut laudantium quaerat ad ex facilis aspernatur, ipsum
+        recusandae ab pariatur dolor, dolores optio veniam nam! Consequatur nostrum assumenda tempore ex possimus quidem
+        veritatis fugiat perferendis facilis minus sit explicabo ducimus, inventore quo quas dolor, aut esse in beatae
+        sapiente nam laudantium! Sit corrupti voluptatem perspiciatis. Doloremque repellat corrupti necessitatibus
+        reiciendis quisquam exercitationem provident nihil nam asperiores, quam iure at quibusdam facilis officia
+        numquam?</p>
+
+    <nav aria-label="breadcrumb mt-5 p-5">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+    </nav>
+
+    <div class="row mt-5 ">
+        <div class="col-12 col-lg-7 col-md-6 mb-2"><img class="w-100 " [src]="book.pictureUrl" [alt]="book.name"></div>
+        <div class="col-12 col-lg-5 col-md-6  ">
+            <h2>Name : {{book.name}}</h2>
+            <p>Price : {{book.price}} EGP</p>
+            <p>Author : {{book.author}}</p>
+            <p>Category : {{book.category}}</p>
+            <p>description : {{book.description}}</p>
+            <div class="mb-2">
+                <label for="#input">In Stock</label>
+                <input id="input" type="text" class="form-control w-25" [value]="book.inStock" disabled>
+            </div>
+            <button [disabled]="book.inStock===0" class="btn btn-dark  w-100  "> {{ book.inStock === 0 ? 'Out of Stock'
+                :
+                'Add To Cart' }}</button>
+        </div>
+    </div>
+</section>

@@ -19,7 +19,7 @@ export class BookShopComponent {
   categoryId!: any
   isFilter: boolean = false
   sortedBy!: string
-  book!:Books
+  book!: Books
 
 
   constructor(private _BookService: BookService) { }
@@ -139,8 +139,6 @@ export class BookShopComponent {
     this._BookService.getBook(bookid).subscribe({
       next: (res) => {
         this.book = res
-
-
       },
       error: () => {
         this.ifError = true
