@@ -20,7 +20,8 @@
                 <label for="#input">In Stock</label>
                 <input id="input" type="text" class="form-control w-25" [value]="book.inStock" disabled>
             </div>
-            <button [disabled]="book.inStock===0" class="btn btn-dark  w-100  "> {{ book.inStock === 0 ? 'Out of Stock'
+            <button  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            aria-controls="offcanvasWithBothOptions"  [disabled]="book.inStock===0" class="btn btn-dark  w-100  "> {{ book.inStock === 0 ? 'Out of Stock'
                 :
                 'Add To Cart' }}</button>
         </div>
