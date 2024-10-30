@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 import { Books } from 'src/app/shared/books';
 
@@ -12,6 +12,7 @@ export class BookInfoComponent {
 
   id!: any
   book!: Books
+
  
 
 

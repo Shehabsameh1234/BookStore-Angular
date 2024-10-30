@@ -10,16 +10,19 @@
     <div class="row text-center p-3 ">
         <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let book of books ,let i=index">
             <div class="position-relative">
-                <div class="position-relative" >
-                    <img [routerLink]="['/shop/bookinfo',book.id]" class="text-pointer" [src]="book.pictureUrl" [alt]="book.name">
-                    <span (click)="getBook(book.id)" class="display-view img-span bg-light text-pointer" data-bs-toggle="modal"
-                        data-bs-target="#example1Modal">quick view</span>
+                <div class="position-relative">
+                    <img [routerLink]="['/shop/bookinfo',book.id]" class="text-pointer" [src]="book.pictureUrl"
+                        [alt]="book.name">
+                    <span (click)="getBook(book.id)" class="display-view img-span bg-light text-pointer"
+                        data-bs-toggle="modal" data-bs-target="#example1Modal">quick view</span>
                 </div>
                 <span class="author-color">{{book.author}}</span>
             </div>
             <p class="px-3">{{book.name}}</p>
             <p>{{book.price}} EGP</p>
-            <button class="btn btn-dark w-100" [disabled]="book.inStock===0"> {{ book.inStock === 0 ? 'Out
+            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                aria-controls="offcanvasWithBothOptions" class="btn btn-dark w-100" [disabled]="book.inStock===0"> {{
+                book.inStock === 0 ? 'Out
                 of Stock' : 'Add To Cart' }}</button>
         </div>
     </div>
@@ -70,3 +73,17 @@
     </div>
 </div>
 <!-- Modal quick view -->
+
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+    aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+</div>

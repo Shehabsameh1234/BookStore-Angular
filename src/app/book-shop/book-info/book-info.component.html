@@ -1,18 +1,10 @@
 <section class="container p-5 mt-5 ">
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam odit, atque, vel doloremque, omnis veritatis
-        distinctio iste vero natus illo molestiae perferendis commodi? Sed, provident qui placeat nam fugiat, debitis
-        quo sapiente, laudantium blanditiis magni dolorem! Ut laudantium quaerat ad ex facilis aspernatur, ipsum
-        recusandae ab pariatur dolor, dolores optio veniam nam! Consequatur nostrum assumenda tempore ex possimus quidem
-        veritatis fugiat perferendis facilis minus sit explicabo ducimus, inventore quo quas dolor, aut esse in beatae
-        sapiente nam laudantium! Sit corrupti voluptatem perspiciatis. Doloremque repellat corrupti necessitatibus
-        reiciendis quisquam exercitationem provident nihil nam asperiores, quam iure at quibusdam facilis officia
-        numquam?</p>
+    
 
-    <nav aria-label="breadcrumb mt-5 p-5">
+    <nav aria-label="breadcrumb " class=" mt-5">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Library</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data</li>
+            <li class="breadcrumb-item"><a [routerLink]="['/shop']">shop</a></li>
+            <li class="breadcrumb-item"><a >{{book.name}}</a></li>
         </ol>
     </nav>
 
@@ -24,7 +16,7 @@
             <p>Author : {{book.author}}</p>
             <p>Category : {{book.category}}</p>
             <p>description : {{book.description}}</p>
-            <div class="mb-2">
+            <div class="mb-2 ">
                 <label for="#input">In Stock</label>
                 <input id="input" type="text" class="form-control w-25" [value]="book.inStock" disabled>
             </div>
@@ -33,4 +25,6 @@
                 'Add To Cart' }}</button>
         </div>
     </div>
-</section>
+</section> 
+
+ 
