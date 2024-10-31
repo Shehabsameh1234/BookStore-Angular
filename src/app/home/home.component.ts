@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Books } from '../shared/books';
 import { BookService } from '../shared/book.service';
+import { BasketService } from '../shared/basket.service';
 
 
 @Component({
@@ -15,11 +16,12 @@ export class HomeComponent {
   ifError: boolean = false
   numberOfPages!: number
   pageIndex!: number
-  book!:Books
+  book!: any
 
-  constructor(private _BookService: BookService) { }
+  constructor(private _BookService: BookService, private _BasketService: BasketService) { 
+
+  }
   ngOnInit(): void {
-    this.getBook(1)
     this._BookService.getAllBooks().subscribe({
       next: (res) => {
         this.books = res.data
@@ -47,28 +49,26 @@ export class HomeComponent {
       }
     })
   }
-  getNextPage()
-  {
+  getNextPage() {
     this.pageIndex++
     this._BookService.getAllBooks(this.pageIndex).subscribe({
       next: (res) => {
         this.books = res.data
         this.pageIndex = res.pageIndex
-      
+
       },
       error: () => {
         this.ifError = true
       }
     })
   }
-  getPreviousPage()
-  {
+  getPreviousPage() {
     this.pageIndex--
     this._BookService.getAllBooks(this.pageIndex).subscribe({
       next: (res) => {
         this.books = res.data
         this.pageIndex = res.pageIndex
-      
+
       },
       error: () => {
         this.ifError = true
@@ -79,11 +79,20 @@ export class HomeComponent {
     this._BookService.getBook(bookid).subscribe({
       next: (res) => {
         this.book = res
-        console.log(this.book);
-        
       },
       error: () => {
         this.ifError = true
+      }
+    })
+  }
+
+  addToBasket(productId:number) {
+    this._BasketService.addToBasket(productId).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error.error.messege);
       }
     })
   }
