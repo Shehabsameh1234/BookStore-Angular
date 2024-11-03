@@ -11,15 +11,20 @@ export class BasketService {
   items: BehaviorSubject<any> = new BehaviorSubject(null)
   totalAmount: BehaviorSubject<any> = new BehaviorSubject(null)
   constructor(private _HttpClient: HttpClient) { }
-  // https://localhost:7185/api/Basket?basketId=basket&productId=3
+
   addToBasket(productId: number): Observable<any> {
     return this._HttpClient
-    .post(`${this.baseUrl}/Basket?basketId=basket&productId=${productId}`,null)
+      .post(`${this.baseUrl}/Basket?basketId=basket&productId=${productId}`, null)
   }
-  // https://localhost:7185/api/Basket?id=basket
+
   getBasket(): Observable<any> {
     return this._HttpClient
-    .get(`${this.baseUrl}/Basket?id=basket`)
+      .get(`${this.baseUrl}/Basket?id=basket`)
+  }
+
+  deleteItem(productId: number): Observable<any> {
+    return this._HttpClient
+      .delete(`${this.baseUrl}/Basket/deleteItem?basketId=basket&productId=${productId}`)
   }
 
 }

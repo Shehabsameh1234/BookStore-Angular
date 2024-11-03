@@ -1,0 +1,31 @@
+button {
+    border-radius: 0;
+    width: 100%;
+}
+
+button:hover {
+    color: var(--main-color);
+}
+
+.row-hover {
+    transition: all .3s;
+}
+
+.row-hover:hover {
+    box-shadow: rgb(140, 208, 233) 2px 5px 5px;
+}
+
+.fa-xmark {
+    opacity: 0;
+    transition: all .3s;
+}
+
+.row-hover:hover .fa-xmark {
+    opacity: 1;
+}
+
+.amount {
+    border: solid 1px var(--main-color);
+    width: 70px;
+    height: 30px;
+}
