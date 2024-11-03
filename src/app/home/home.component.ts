@@ -89,10 +89,11 @@ export class HomeComponent {
   addToBasket(productId:number) {
     this._BasketService.addToBasket(productId).subscribe({
       next: (res) => {
-        console.log(res);
+        this._BasketService.items.next(res.items)
+        this._BasketService.totalAmount.next(res.totalAmount)
       },
       error: (error) => {
-        console.log(error.error.messege);
+        alert(error.error.messege);
       }
     })
   }
