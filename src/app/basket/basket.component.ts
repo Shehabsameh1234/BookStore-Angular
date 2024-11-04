@@ -17,6 +17,8 @@ export class BasketComponent {
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
+        console.log(this.items.length);
+        
       },
       error: (error) => {
         console.log(error);
@@ -38,8 +40,19 @@ export class BasketComponent {
       error: (error) => {
         console.log(error);
       }
-
     })
+  }
+  updateQuantity(productId: number, quantity: number) {
+    this._BasketService.updateQuantity(productId, quantity).subscribe({
+      next: (res) => {
+        this._BasketService.items.next(res.items)
+        this._BasketService.totalAmount.next(res.totalAmount)
+      },
+      error: (error) => {
+        alert(error.error.messege)
+      }
+    })
+
   }
 
 }

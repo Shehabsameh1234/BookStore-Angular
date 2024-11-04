@@ -1,11 +1,13 @@
-<div class="offcanvas offcanvas-start " data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+<div  class="offcanvas offcanvas-start " data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
     aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header d-flex justify-content-between bg-dark text-Color">
         <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Basket</h5>
         <p class="text-pointer" data-bs-dismiss="offcanvas" aria-label="Close"><i
                 class="fa-solid fa-arrow-left mt-3"></i></p>
     </div>
+
     <div class="offcanvas-body">
+        <h4 class="text-center text-Color" *ngIf="items.length===0">cart is empty</h4>
         <div *ngFor="let item of items ,let i=index">
             <div class="row mb-2 row-hover  p-2">
                 <div class="col-5">
@@ -18,20 +20,20 @@
                     </div>
                     <p>{{item.price}},00EGP</p>
                     <div class="amount d-flex justify-content-between px-2">
-                        <p class="text-pointer" >-</p>
-                        <p>1</p>
-                        <p class="text-pointer">+</p>
+                        <p class="text-pointer " (click)="updateQuantity(item.id,item.quantity-1)">-</p>
+                        <p>{{item.quantity}}</p>
+                        <p class="text-pointer" (click)="updateQuantity(item.id,item.quantity+1)">+</p>
                     </div>
                 </div>
             </div>
             <hr>
         </div>
     </div>
-    <div class=" d-flex justify-content-between p-2  shadow">
+    <div *ngIf="items.length!=0" class=" d-flex justify-content-between p-2  shadow">
         <h3 class="text-Color">subtotal</h3>
         <h3 class="text-Color ">{{totalAmount}} EGP</h3>
     </div>
-    <div>
+    <div *ngIf="items.length!=0">
         <button class="btn btn-dark text-Color">checkout</button>
     </div>
 </div>

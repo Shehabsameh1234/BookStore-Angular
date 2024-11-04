@@ -17,6 +17,8 @@ export class HomeComponent {
   numberOfPages!: number
   pageIndex!: number
   book!: any
+ 
+
 
   constructor(private _BookService: BookService, private _BasketService: BasketService) { 
 
@@ -91,10 +93,13 @@ export class HomeComponent {
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
+     
       },
       error: (error) => {
         alert(error.error.messege);
+       
       }
     })
   }
+  
 }
