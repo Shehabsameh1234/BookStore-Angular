@@ -96,7 +96,6 @@ export class HomeComponent {
       },
       error: (error) => {
         alert(error.error.messege);
-        
       }
     })
   }
