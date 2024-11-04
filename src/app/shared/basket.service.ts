@@ -10,6 +10,8 @@ export class BasketService {
   baseUrl: string = environment.apiUrl;
   items: BehaviorSubject<any> = new BehaviorSubject(null)
   totalAmount: BehaviorSubject<any> = new BehaviorSubject(null)
+  numberOfItems: BehaviorSubject<any> = new BehaviorSubject(null)
+
   ifOpen:boolean=false
 
   constructor(private _HttpClient: HttpClient) { }

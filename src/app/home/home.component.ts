@@ -17,8 +17,8 @@ export class HomeComponent {
   numberOfPages!: number
   pageIndex!: number
   book!: any
- 
-  constructor(private _BookService: BookService, private _BasketService: BasketService) { 
+
+  constructor(private _BookService: BookService, private _BasketService: BasketService) {
 
   }
   ngOnInit(): void {
@@ -86,18 +86,17 @@ export class HomeComponent {
     })
   }
 
-  addToBasket(productId:number) {
+  addToBasket(productId: number) {
     this._BasketService.addToBasket(productId).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
-       
-     
+        this._BasketService.numberOfItems.next(res.items.length)
       },
       error: (error) => {
         alert(error.error.messege);
       }
     })
   }
-  
+
 }

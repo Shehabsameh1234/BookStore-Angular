@@ -17,6 +17,7 @@ export class BasketComponent {
     this._BasketService.getBasket().subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
+        this._BasketService.numberOfItems.next(res.items.length)
         this._BasketService.totalAmount.next(res.totalAmount)
       },
       error: () => {
@@ -29,13 +30,13 @@ export class BasketComponent {
     this._BasketService.totalAmount.subscribe(() => {
       this.totalAmount = this._BasketService.totalAmount.getValue()
     })
-   
   }
   deleteItem(productId: number) {
     this._BasketService.deleteItem(productId).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
+        this._BasketService.numberOfItems.next(res.items.length)
       },
       error: (error) => {
         console.log(error);
@@ -52,6 +53,7 @@ export class BasketComponent {
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
+        this._BasketService.numberOfItems.next(res.items.length)
       },
       error: (error) => {
         alert(error.error.messege)

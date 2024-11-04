@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BasketService } from '../shared/basket.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  numberOfItems!: number
+  constructor(private _BasketService: BasketService) { }
+  ngOnInit(): void {
+    this._BasketService.numberOfItems.subscribe(() => {
+      this.numberOfItems = this._BasketService.numberOfItems.getValue()
+    })
 
+  }
 }
