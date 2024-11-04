@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BasketService } from '../shared/basket.service';
 import { Item } from '../shared/basket'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
@@ -10,7 +11,7 @@ import { Item } from '../shared/basket'
 export class BasketComponent {
   items!: Item[]
   totalAmount!: number
-  constructor(private _BasketService: BasketService) { }
+  constructor(private _BasketService: BasketService,private _router:Router) { }
 
   ngOnInit() {
     this._BasketService.getBasket().subscribe({
@@ -21,7 +22,7 @@ export class BasketComponent {
 
       },
       error: (error) => {
-        console.log(error);
+        this._router.navigate(['/notFound']); // Navigate to the error component
       }
     })
     this._BasketService.items.subscribe(() => {
