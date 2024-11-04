@@ -18,10 +18,8 @@ export class BasketComponent {
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
-        console.log(this.items.length);
-
       },
-      error: (error) => {
+      error: () => {
         this._router.navigate(['/notFound']); // Navigate to the error component
       }
     })
@@ -31,6 +29,7 @@ export class BasketComponent {
     this._BasketService.totalAmount.subscribe(() => {
       this.totalAmount = this._BasketService.totalAmount.getValue()
     })
+   
   }
   deleteItem(productId: number) {
     this._BasketService.deleteItem(productId).subscribe({
