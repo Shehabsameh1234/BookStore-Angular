@@ -1,28 +1,85 @@
 <section class=" py-5  mt-5">
-    <form class="mt-4">
+    <h2 class="mt-5 text-center text-Color">signUp now</h2>
+    <form class="mt-4" (ngSubmit)="signUpSubimt(registerForm)" [formGroup]="registerForm">
         <div class="container">
             <div>
-                <label [ngClass]="{'slide-up':labelval}" [ngStyle]="{'opacity':labelval !=''?'1':'0'}" for="userName">userName :</label>
-                <input id="userName" (keyup)="label1($event)" placeholder="userName" type="text"
+                <label [ngClass]="{'slide-up':labelval}" [ngStyle]="{'opacity':labelval !=''?'1':'0'}"
+                    for="name">userName :</label>
+                <input id="name" formControlName="name" (keyup)="label1($event)" placeholder="userName" type="text"
                     class="w-100 mt-3  border-0 ">
                 <hr>
+                <div class="bg-success text-white p-2  mt-1"
+                    *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+                    <p *ngIf="registerForm.get('name')?.errors?.['required']">input is required</p>
+                    <p *ngIf="registerForm.get('name')?.errors?.['minlength']">min length is 3</p>
+                    <p *ngIf="registerForm.get('name')?.errors?.['maxlength']">max length is 10</p>
+                </div>
             </div>
             <div>
-                <label for="usrAge" [ngClass]="{'slide-up':labelval1}" [ngStyle]="{'opacity':labelval1 !=''?'1':'0'}">usrAge :</label>
-                <input id="usrAge" (keyup)="label2($event)"  placeholder="usrAge" type="number" class="w-100 mt-3  border-0 ">
+                <label for="email" [ngClass]="{'slide-up':labelval2}"
+                    [ngStyle]="{'opacity':labelval2 !=''?'1':'0'}">Email :</label>
+                <input id="email" formControlName="email" (keyup)="label3($event)" placeholder="email" type="email"
+                    class="w-100 mt-3  border-0 ">
+                <div class="bg-success text-white p-2  mt-1"
+                    *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+                    <p *ngIf="registerForm.get('email')?.errors?.['required']">input is required</p>
+                    <p *ngIf="registerForm.get('email')?.errors?.['email']">enter a valid email</p>
+                </div>
                 <hr>
             </div>
             <div>
-                <label for="userEmail" [ngClass]="{'slide-up':labelval2}"  [ngStyle]="{'opacity':labelval2 !=''?'1':'0'}">userEmail :</label>
-                <input id="userEmail" (keyup)="label3($event)" placeholder="userEmail" type="email" class="w-100 mt-3  border-0 ">
-                <hr>
+                <div class="position-relative">
+                    <label for="password" [ngClass]="{'slide-up':labelval3}"
+                        [ngStyle]="{'opacity':labelval3 !=''?'1':'0'}">Password </label>
+                    <input id="password" formControlName="password" (keyup)="label4($event);validPassword(registerForm)"
+                        placeholder="Password" [attr.type]="isShowPassword ? 'text' : 'password'"
+                        class="w-100 mt-3  border-0 ">
+                    <div class=" text-end">
+                        <i (click)="showPassword()"
+                            class="fa-solid fa-eye text-end position-absolute top-50 text-pointer text-Color"></i>
+                    </div>
+                    <hr>
+                </div>
+                <div class="bg-success text-white p-2  mt-1"
+                    *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                    <p *ngIf="registerForm.get('password')?.errors?.['required']">input is required</p>
+                    <p *ngIf="registerForm.get('password')?.errors?.['pattern']">password must contain at least one
+                        number , one upper case charachter ,one alphanumeric</p>
+                </div>
             </div>
+
             <div>
-                <label for="userPassword" [ngClass]="{'slide-up':labelval3}" [ngStyle]="{'opacity':labelval3 !=''?'1':'0'}">userPassword :</label>
-                <input id="userPassword" (keyup)="label4($event)" placeholder="userPassword" type="password" class="w-100 mt-3  border-0 ">
-                <hr>
+                <div class="position-relative">
+                    <label for="rePassword" [ngClass]="{'slide-up':labelval4}"
+                        [ngStyle]="{'opacity':labelval4 !=''?'1':'0'}">RePassword </label>
+                    <input id="rePassword" formControlName="rePassword"
+                        (keyup)="label5($event);validPassword(registerForm)" placeholder="rePassword"
+                        [attr.type]="isShowRePassword ? 'text' : 'password'" class="w-100 mt-3  border-0 ">
+                    <div class=" text-end">
+                        <i (click)="showRePassword()"
+                            class="fa-solid fa-eye text-end position-absolute top-50 text-pointer text-Color"></i>
+                    </div>
+                    <hr>
+                </div>
+                <div *ngIf="!isMatch" class="bg-success text-white p-2  mt-1">
+                    <p>passwords did not match </p>
+                </div>
             </div>
-            <button class="border-0 rounded mt-2">send message</button>
+
+            <div>
+                <label for="phone" [ngClass]="{'slide-up':labelval1}"
+                    [ngStyle]="{'opacity':labelval1 !=''?'1':'0'}">Phone Number :</label>
+                <input id="phone" formControlName="phone" (keyup)="label2($event)" placeholder="phone number"
+                    type="number" class="w-100 mt-3  border-0 ">
+                <hr>
+                <div class="bg-success text-white p-2  mt-1"
+                    *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+                    <p *ngIf="registerForm.get('phone')?.errors?.['required']">input is required</p>
+                    <p *ngIf="registerForm.get('phone')?.errors?.['pattern']">enter an egyption phone number</p>
+                </div>
+            </div>
+            <button type="submit" [disabled]="registerForm.invalid" [ngClass]="{'btn123':registerForm.valid}"
+                class="border-0 rounded mt-2">send message</button>
         </div>
     </form>
 </section>

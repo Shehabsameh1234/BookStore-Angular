@@ -1,3 +1,6 @@
+i{
+    right: 10px;
+}
 span {
     border: solid 2px black;
 }
@@ -52,9 +55,12 @@ section {
 }
 
 button {
-    background-color: #1abc9c;
+    background-color: #000000;
     color: white;
     padding: 10px 15px;
+}
+.btn123{
+    background-color: #1abc9c;
 }
 
 button:focus {

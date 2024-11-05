@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BasketService } from '../shared/basket.service';
+import { BasketService } from '../shared/services/basket.service';
 
 @Component({
   selector: 'app-nav-bar',

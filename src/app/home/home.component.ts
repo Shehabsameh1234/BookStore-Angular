@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { Books } from '../shared/books';
-import { BookService } from '../shared/book.service';
-import { BasketService } from '../shared/basket.service';
+import { Books } from '../shared/interfaces/books';
+import { BookService } from '../shared/services/book.service';
+import { BasketService } from '../shared/services/basket.service';
 import { Title } from '@angular/platform-browser';
 
 

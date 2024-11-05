@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BookService } from '../shared/book.service';
-import { Books } from '../shared/books';
+import { BookService } from '../shared/services/book.service';
+import { Books } from '../shared/interfaces/books';
 import { ViewChild, ElementRef } from '@angular/core';
 declare var bootstrap: any; // Make sure Bootstrap JS is loaded
 @Component({
