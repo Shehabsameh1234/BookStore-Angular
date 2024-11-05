@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Books } from '../shared/books';
 import { BookService } from '../shared/book.service';
 import { BasketService } from '../shared/basket.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -18,8 +19,8 @@ export class HomeComponent {
   pageIndex!: number
   book!: any
 
-  constructor(private _BookService: BookService, private _BasketService: BasketService) {
-
+  constructor(private titleService: Title,private _BookService: BookService, private _BasketService: BasketService) {
+    titleService.setTitle("home")
   }
   ngOnInit(): void {
     this._BookService.getAllBooks().subscribe({
