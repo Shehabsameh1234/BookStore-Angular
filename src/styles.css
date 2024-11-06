@@ -28,6 +28,8 @@
 
 .color{
     transform: scale(1.1);
+    background-color: #60e7e37b;
+    border-radius: 25px;
 }
 
 .btn-Color {
