@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { RegistrationService } from '../shared/services/registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -11,29 +13,41 @@ export class RegistrationComponent {
 
   isShowPassword: boolean = false
   isShowRePassword: boolean = false
-  isMatch: boolean=true
-
-  isMattch!: any
-  constructor(private titleService: Title) {
+  isMatch: boolean = true
+  isMattch!: boolean
+  isLoading:boolean = false
+  errorMessege!:string
+  constructor(private titleService: Title, private _RegistrationService: RegistrationService,private _router:Router) {
     titleService.setTitle("contact")
   }
   ngOnInit(): void {
   }
   registerForm: FormGroup = new FormGroup({
-    name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),
+    displayName: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z0-9]).{8,}$/)]),
     rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z0-9]).{8,}$/)]),
-    phone: new FormControl(null, [Validators.required, Validators.pattern(/^1[0125][0-9]{8}$/)]),
+    PhoneNumber: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
   })
   validPassword(registerForm: any) {
     if (registerForm.get('password').value != registerForm.get('rePassword').value) this.isMatch = false
     else this.isMatch = true
     console.log(this.isMatch);
-    
+
   }
   signUpSubimt(registerForm: FormGroup) {
-
+    this.isLoading=true
+    this._RegistrationService.signUp(registerForm.value).subscribe({
+      next: (res) => {
+        this.isLoading=false
+        this.errorMessege=''
+        this._router.navigate(['/home']);
+      },
+      error: (error) => {
+        this.isLoading=false
+        this.errorMessege=error.error.messege;
+      },
+    })
   }
 
   showPassword() {
