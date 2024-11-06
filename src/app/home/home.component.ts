@@ -18,8 +18,9 @@ export class HomeComponent {
   numberOfPages!: number
   pageIndex!: number
   book!: any
+  isRotated:boolean=false
 
-  constructor(private titleService: Title,private _BookService: BookService, private _BasketService: BasketService) {
+  constructor(private titleService: Title, private _BookService: BookService, private _BasketService: BasketService) {
     titleService.setTitle("home")
   }
   ngOnInit(): void {
@@ -86,16 +87,35 @@ export class HomeComponent {
       }
     })
   }
-
-  addToBasket(productId: number) {
+ 
+  addToBasket(productId: number,i :number) {
+    const div = document.getElementById(`row${i}`);
+    let originalContent = '';
+    if(div){
+      originalContent= div.innerHTML
+    }
     this._BasketService.addToBasket(productId).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
         this._BasketService.totalAmount.next(res.totalAmount)
         this._BasketService.numberOfItems.next(res.items.length)
       },
-      error: (error) => {
-        alert(error.error.messege);
+      error: () => {  
+        div?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (div) {
+          div.innerHTML = "<h2 class='text-center'>item in basket</h2>";
+        }
+        setTimeout(() => {
+          if (div) {
+            div.innerHTML = originalContent;
+          }
+        }, 1000); // 1000ms = 1 second
+        setTimeout(() => {
+          div?.classList.add("color")
+        }, 200);
+        setTimeout(() => {
+          div?.classList.remove("color")
+        }, 1100);
       }
     })
   }

@@ -20,10 +20,10 @@
             </div>
             <p class="px-3">{{book.name}}</p>
             <p>{{book.price}} EGP</p>
-            <button (click)="addToBasket(book.id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            <button (click)="addToBasket(book.id,book.id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                 aria-controls="offcanvasWithBothOptions" class="btn btn-dark w-100" [disabled]="book.inStock===0"> {{
                 book.inStock === 0 ? 'Out
-                of Stock' : 'Add To Cart' }}</button>
+                of Stock' : 'Add To Basket' }}</button>
         </div>
     </div>
 </section>

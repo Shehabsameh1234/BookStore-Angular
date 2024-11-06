@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class BasketComponent {
   items!: Item[]
   totalAmount!: number
-  constructor(private _BasketService: BasketService,private _router:Router) { }
+  constructor(private _BasketService: BasketService, private _router: Router) { }
 
   ngOnInit() {
     this._BasketService.getBasket().subscribe({
@@ -44,11 +44,10 @@ export class BasketComponent {
     })
   }
   updateQuantity(productId: number, quantity: number) {
-    if (quantity === 0) 
-      { 
-        this.deleteItem(productId)
-        return;
-      };
+    if (quantity === 0) {
+      this.deleteItem(productId)
+      return;
+    };
     this._BasketService.updateQuantity(productId, quantity).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
@@ -61,5 +60,6 @@ export class BasketComponent {
     })
 
   }
+
 
 }

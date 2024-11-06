@@ -25,6 +25,11 @@
     --bs-gradient: none;
 }
 
+
+.color{
+    transform: scale(1.1);
+}
+
 .btn-Color {
     --bs-btn-color: #fff;
     --bs-btn-bg: var(--main-color);
