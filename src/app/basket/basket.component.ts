@@ -48,6 +48,7 @@ export class BasketComponent {
       this.deleteItem(productId)
       return;
     };
+    const div= document.getElementById(`${productId}`)
     this._BasketService.updateQuantity(productId, quantity).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
@@ -55,7 +56,14 @@ export class BasketComponent {
         this._BasketService.numberOfItems.next(res.items.length)
       },
       error: (error) => {
-        alert(error.error.messege)
+        if(div){
+          div.classList.add("alert-div")
+        }
+        setTimeout(()=>{
+          if(div){
+            div.classList.remove("alert-div")
+          }
+        },500)
       }
     })
 

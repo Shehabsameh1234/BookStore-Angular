@@ -26,10 +26,12 @@
 }
 
 
-.color{
+.alert-div{
     transform: scale(1.1);
     background-color: #60e7e37b;
     border-radius: 25px;
+    padding-left: 5px;
+    transition: all .5s;
 }
 
 .btn-Color {

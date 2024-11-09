@@ -90,6 +90,7 @@ export class HomeComponent {
 
   addToBasket(productId: number, i: number) {
     let div = document.getElementById(`row${i}`);
+    const div2= document.getElementById(`${productId}`)
     this._BasketService.addToBasket(productId).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
@@ -99,21 +100,25 @@ export class HomeComponent {
           div = document.getElementById(`row${i}`);
           div?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           setTimeout(() => {
-            div?.classList.add("color")
+            div?.classList.add("alert-div")
           }, 200);
           setTimeout(() => {
-            div?.classList.remove("color")
+            div?.classList.remove("alert-div")
           }, 1100);
         }, 0)
       },
       error: () => {
         div?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => {
-          div?.classList.add("color")
-        }, 200);
-        setTimeout(() => {
-          div?.classList.remove("color")
-        }, 1100);
+        setTimeout(()=>{
+          if(div2){
+            div2.classList.add("alert-div")
+          }
+        },500)
+        setTimeout(()=>{
+          if(div2){
+            div2.classList.remove("alert-div")
+          }
+        },1500)
       }
     })
   }
