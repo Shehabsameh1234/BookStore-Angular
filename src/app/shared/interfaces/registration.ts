@@ -5,3 +5,7 @@ export interface registerData {
     rePassword: string,
     PhoneNumber: string
 }
+export interface logInData {
+    email: string,
+    password: string,   
+}

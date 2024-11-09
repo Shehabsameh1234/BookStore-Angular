@@ -26,11 +26,14 @@
           aria-controls="offcanvasWithBothOptions" class="nav-item mt-2 ">
             <i class="fa-solid fa-cart-shopping text-Color h4 position-relative me-lg-3 mt-1 text-pointer"><span>{{numberOfItems}}</span></i>
           </li>
-          <li class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
+          <li *ngIf="!isLogin" class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
             <a class="nav-link" aria-current="page"  routerLink="/registration/login">login</a>
           </li>
-          <li class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
+          <li *ngIf="!isLogin" class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
             <a class="nav-link" aria-current="page" routerLink="/registration">signup</a>
+          </li>
+          <li *ngIf="isLogin" class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
+            <a class="nav-link" aria-current="page" routerLink="/registration">logout</a>
           </li>
         </ul>
       </div>
