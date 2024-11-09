@@ -14,14 +14,12 @@ export class RegistrationComponent {
   isShowPassword: boolean = false
   isShowRePassword: boolean = false
   isMatch: boolean = true
-  isMattch!: boolean
   isLoading:boolean = false
   errorMessege!:string
   constructor(private titleService: Title, private _RegistrationService: RegistrationService,private _router:Router) {
-    titleService.setTitle("contact")
+    titleService.setTitle("signup")
   }
-  ngOnInit(): void {
-  }
+
   registerForm: FormGroup = new FormGroup({
     displayName: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -32,8 +30,6 @@ export class RegistrationComponent {
   validPassword(registerForm: any) {
     if (registerForm.get('password').value != registerForm.get('rePassword').value) this.isMatch = false
     else this.isMatch = true
-    console.log(this.isMatch);
-
   }
   signUpSubimt(registerForm: FormGroup) {
     this.isLoading=true
@@ -41,7 +37,7 @@ export class RegistrationComponent {
       next: (res) => {
         this.isLoading=false
         this.errorMessege=''
-        this._router.navigate(['/home']);
+        this._router.navigate(['/registration/login']);
       },
       error: (error) => {
         this.isLoading=false

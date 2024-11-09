@@ -1,0 +1,48 @@
+<section class=" py-5  mt-5">
+    <h2 class="mt-5 text-center text-Color">login now</h2>
+    <!-- <h5 class="mt-2 text-center text-Color">{{errorMessege}}</h5> -->
+    <form class="mt-4" (ngSubmit)="logInsubmit(loginForm)" [formGroup]="loginForm">
+        <div class="container">
+            <div>
+                <label for="email" [ngClass]="{'slide-up':labelval2}"
+                    [ngStyle]="{'opacity':labelval2 !=''?'1':'0'}">Email :</label>
+                <input id="email" formControlName="email" (keyup)="label3($event)" placeholder="email" type="email"
+                    class="w-100 mt-3  border-0 ">
+                <div class="bg-success text-white p-2  mt-1"
+                    *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+                    <p *ngIf="loginForm.get('email')?.errors?.['required']">input is required</p>
+                    <p *ngIf="loginForm.get('email')?.errors?.['email']">enter a valid email</p>
+                </div>
+                <hr>
+            </div>
+            <div>
+                <div class="position-relative">
+                    <label for="password" [ngClass]="{'slide-up':labelval3}"
+                        [ngStyle]="{'opacity':labelval3 !=''?'1':'0'}">Password </label>
+                    <input id="password" formControlName="password" (keyup)="label4($event)"
+                        placeholder="Password" [attr.type]="isShowPassword ? 'text' : 'password'"
+                        class="w-100 mt-3  border-0 ">
+                    <div class=" text-end">
+                        <i (click)="showPassword()"
+                            class="fa-solid fa-eye text-end position-absolute top-50 text-pointer text-Color"></i>
+                    </div>
+                    <hr>
+                </div>
+                <div class="bg-success text-white p-2  mt-1"
+                    *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+                    <p *ngIf="loginForm.get('password')?.errors?.['required']">input is required</p>
+                    <p *ngIf="loginForm.get('password')?.errors?.['pattern']">password must contain at least one
+                        number , one upper case charachter ,one alphanumeric</p>
+                </div>
+            </div>
+            <button type="submit" [disabled]="loginForm.invalid" 
+                class="border-0 rounded mt-2">
+                <div *ngIf="isLoading">
+                    <div class="loader"></div>
+                </div>
+                <i *ngIf="!isLoading">submit</i>
+            </button>
+        </div>
+    </form>
+
+</section>

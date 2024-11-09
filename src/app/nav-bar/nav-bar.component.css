@@ -1,19 +1,21 @@
-
-.font-brand-size{
+.font-brand-size {
     font-size: 30px;
 }
-.font-size{
+
+.font-size {
     font-size: 20px;
 }
-li span{
+
+li span {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     bottom: 80%;
-    left: 86%;
-    font-size: 16px;
+    left: 80%;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    background-color: black;
+    border-radius: 50%;
 }
-
-
-
-
-
-

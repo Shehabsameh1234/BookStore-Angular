@@ -1,0 +1,119 @@
+i {
+    right: 10px;
+}
+
+span {
+    border: solid 2px black;
+}
+
+h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    color: #1abc9c;
+    position: relative;
+
+}
+
+
+input:focus {
+    outline: 0;
+    border: 0;
+}
+
+div.container {
+    width: 50%;
+}
+
+.slide-up {
+    animation: slideUp 1s;
+    position: relative;
+    opacity: 1;
+
+}
+
+@keyframes slideUp {
+
+    0% {
+        top: 30px;
+    }
+
+    100% {
+
+        top: 0;
+    }
+}
+
+
+section {
+    background-color: white;
+    color: #212529;
+    justify-content: start;
+    padding-bottom: 170px;
+}
+
+button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+}
+
+.btn123 {
+    background-color: #1abc9c;
+}
+
+button:focus {
+    padding: 9px 14px;
+}
+
+
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 15px;
+    color :#0000;
+    overflow: hidden;
+    animation: l9 5s infinite cubic-bezier(0.3,1,0,1);
+  }
+  .loader:before {
+    content:"Loading..."
+  }
+  @keyframes l9 {
+    0%  {text-shadow: 0    0 #000, 11ch 0 #8A9B0F, 22ch 0 #C02942, 33ch 0 #00A0B0,44ch 0 #000}
+    25% {text-shadow:-11ch 0 #000,  0ch 0 #8A9B0F, 11ch 0 #C02942, 22ch 0 #00A0B0,33ch 0 #000}
+    50% {text-shadow:-22ch 0 #000,-11ch 0 #8A9B0F,  0ch 0 #C02942, 11ch 0 #00A0B0,22ch 0 #000}
+    75% {text-shadow:-33ch 0 #000,-22ch 0 #8A9B0F,-11ch 0 #C02942,  0ch 0 #00A0B0,11ch 0 #000}
+    100%{text-shadow:-44ch 0 #000,-33ch 0 #8A9B0F,-22ch 0 #C02942,-11ch 0 #00A0B0, 0ch 0 #000}
+  }
+
+@media (min-width: 0px) and (max-width: 320px) {
+    h2 {
+        font-size: 25px;
+    }
+
+    div.container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 321px)and (max-width: 480px) {
+    h2 {
+        font-size: 30px;
+    }
+
+    div.container {
+        width: 95%;
+    }
+}
+
+@media (min-width: 481px)and (max-width: 1000px) {
+
+    div.container {
+        width: 95%;
+    }
+}
