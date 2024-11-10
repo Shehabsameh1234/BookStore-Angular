@@ -19,7 +19,7 @@ export class BookShopComponent {
   categoryId!: any
   isFilter: boolean = false
   sortedBy!: string
-  book!: Books
+  book!: any
 
 
   constructor(private _BookService: BookService) { }

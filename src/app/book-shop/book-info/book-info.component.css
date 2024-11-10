@@ -1,6 +1,3 @@
-img {
-    height: 75%;
-}
 
 .content {
     max-width: 600px;
@@ -8,9 +5,15 @@ img {
     line-height: 1.6;
 }
 
-@media (min-width: 0px) and (max-width: 991px) {
+div .d-flex{
+overflow: hidden;
+justify-content: center;
+align-content: center;
+}
 
-    img {
-        height: 100%;
+@media (min-width: 0px) and (max-width: 991px) {
+    img{
+        width: 100%;
     }
 }
+

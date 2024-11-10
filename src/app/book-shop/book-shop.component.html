@@ -121,19 +121,19 @@
       </div>
       <div class="modal-body p-0">
         <div class="row  container-fluid">
-          <div class="col-7"><img class="w-100 mb-2" [src]="book.pictureUrl" [alt]="book.name"></div>
+          <div class="col-7"><img class="w-100 mb-2" [src]="book?.pictureUrl" [alt]="book?.name"></div>
           <div class="col-5">
-            <h2>Name : {{book.name}}</h2>
-            <p>Price : {{book.price}} EGP</p>
-            <p>Author : {{book.author}}</p>
-            <p>Category : {{book.category}}</p>
+            <h2>Name : {{book?.name}}</h2>
+            <p>Price : {{book?.price}} EGP</p>
+            <p>Author : {{book?.author}}</p>
+            <p>Category : {{book?.category}}</p>
 
-            <p class="mt-3">description : {{book.description}}</p>
+            <p class="mt-3">description : {{book?.description}}</p>
             <div class="mb-5">
               <label for="#input">In Stock</label>
-              <input id="input" type="text" class="form-control w-25" [value]="book.inStock" disabled>
+              <input id="input" type="text" class="form-control w-25" [value]="book?.inStock" disabled>
             </div>
-            <button  [disabled]="book.inStock===0" class="btn btn-dark  w-100 "> {{ book.inStock === 0 ? 'Out of Stock' :
+            <button  [disabled]="book?.inStock===0" class="btn btn-dark  w-100 "> {{ book?.inStock === 0 ? 'Out of Stock' :
               'Add To Cart' }}</button>
           </div>
         </div>

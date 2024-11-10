@@ -11,9 +11,7 @@ import { Books } from 'src/app/shared/interfaces/books';
 export class BookInfoComponent {
 
   id!: any
-  book!: Books
-
- 
+  book!: any
 
 
   constructor(private _ActivatedRoute: ActivatedRoute, private _BookService: BookService) { }
