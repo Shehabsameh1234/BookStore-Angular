@@ -6,6 +6,11 @@ span {
     border: solid 2px black;
 }
 
+
+a{
+    text-decoration: none;
+    
+}
 h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 40px;
