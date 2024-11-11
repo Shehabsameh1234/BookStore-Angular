@@ -17,4 +17,5 @@ export class RegistrationService {
   logIn(_logInData:logInData): Observable<any>{
     return  this._HttpClient.post(`${this.baseUrl}/Account/logIn`, _logInData)
   }
+  
 }

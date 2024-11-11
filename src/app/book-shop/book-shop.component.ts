@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BookService } from '../shared/services/book.service';
 import { Books } from '../shared/interfaces/books';
 import { ViewChild, ElementRef } from '@angular/core';
+import { BasketService } from '../shared/services/basket.service';
 declare var bootstrap: any; // Make sure Bootstrap JS is loaded
 @Component({
   selector: 'app-book-shop',
@@ -22,7 +23,7 @@ export class BookShopComponent {
   book!: any
 
 
-  constructor(private _BookService: BookService) { }
+  constructor(private _BookService: BookService,private _BasketService : BasketService) { }
 
   // Toggle Modal based on boolean value
   toggleModal() {
@@ -143,6 +144,41 @@ export class BookShopComponent {
       error: () => {
         this.ifError = true
 
+      }
+    })
+  }
+
+  addToBasket(productId: number) {
+    let div = document.getElementById(`row${productId}`);
+    const div2= document.getElementById(`${productId}`)
+    this._BasketService.addToBasket(productId).subscribe({
+      next: (res) => {
+        this._BasketService.items.next(res.items)
+        this._BasketService.totalAmount.next(res.totalAmount)
+        this._BasketService.numberOfItems.next(res.items.length)
+        setTimeout(() => {
+          div = document.getElementById(`row${productId}`);
+          div?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => {
+            div?.classList.add("alert-div")
+          }, 200);
+          setTimeout(() => {
+            div?.classList.remove("alert-div")
+          }, 1100);
+        }, 0)
+      },
+      error: () => {
+        div?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(()=>{
+          if(div2){
+            div2.classList.add("alert-div")
+          }
+        },500)
+        setTimeout(()=>{
+          if(div2){
+            div2.classList.remove("alert-div")
+          }
+        },1500)
       }
     })
   }

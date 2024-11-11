@@ -30,6 +30,7 @@ export class LogInComponent {
       next: (res) => {
         console.log(res);4 
         localStorage.setItem("userToken", res.token)
+        
         this._RegistrationService.isLogin.next(true)
         this.errorMessege = ''
         this._router.navigate(["/home"])

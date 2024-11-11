@@ -88,8 +88,8 @@ export class HomeComponent {
     })
   }
 
-  addToBasket(productId: number, i: number) {
-    let div = document.getElementById(`row${i}`);
+  addToBasket(productId: number) {
+    let div = document.getElementById(`row${productId}`);
     const div2= document.getElementById(`${productId}`)
     this._BasketService.addToBasket(productId).subscribe({
       next: (res) => {
@@ -97,7 +97,7 @@ export class HomeComponent {
         this._BasketService.totalAmount.next(res.totalAmount)
         this._BasketService.numberOfItems.next(res.items.length)
         setTimeout(() => {
-          div = document.getElementById(`row${i}`);
+          div = document.getElementById(`row${productId}`);
           div?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           setTimeout(() => {
             div?.classList.add("alert-div")

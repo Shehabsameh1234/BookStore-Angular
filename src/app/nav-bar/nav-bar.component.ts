@@ -22,6 +22,11 @@ export class NavBarComponent {
       this.isLogin=true
     }
     else this.isLogin=false
-
+  }
+  logOut()
+  {
+    localStorage.removeItem("userToken")
+    this._RegistrationService.isLogin.next(false)
+   
   }
 }

@@ -5,7 +5,7 @@
   <div class=" mt-5 container-fluid text-center d-flex justify-content-between">
     <!-- offcanvas -->
     <button class="btn btn-outline-Color display-offcanvas" type="button" data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter By</button>
+      data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Category</button>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
@@ -47,7 +47,7 @@
             <button class="accordion-button" type="button" data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
               aria-controls="panelsStayOpen-collapseOne">
-              Filter By
+              Filter By Category
             </button>
           </h3>
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
@@ -79,7 +79,7 @@
             </div>
             <p class="px-3">{{book.name}}</p>
             <p>{{book.price}} EGP</p>
-            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            <button (click)="addToBasket(book.id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
             aria-controls="offcanvasWithBothOptions" [disabled]="book.inStock===0" class="btn btn-dark w-100 button-hover"> {{ book.inStock === 0 ? 'Out
               of Stock' : 'Add To Cart' }}</button>
           </div>
@@ -128,12 +128,13 @@
             <p>Author : {{book?.author}}</p>
             <p>Category : {{book?.category}}</p>
 
-            <p class="mt-3">description : {{book?.description}}</p>
+            <p  class="mt-3">description : {{book?.description}}</p>
             <div class="mb-5">
               <label for="#input">In Stock</label>
               <input id="input" type="text" class="form-control w-25" [value]="book?.inStock" disabled>
             </div>
-            <button  [disabled]="book?.inStock===0" class="btn btn-dark  w-100 "> {{ book?.inStock === 0 ? 'Out of Stock' :
+            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            aria-controls="offcanvasWithBothOptions"  (click)="addToBasket(book?.id)"  [disabled]="book?.inStock===0" class="btn btn-dark  w-100 "> {{ book?.inStock === 0 ? 'Out of Stock' :
               'Add To Cart' }}</button>
           </div>
         </div>

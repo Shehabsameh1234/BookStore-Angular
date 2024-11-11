@@ -32,8 +32,8 @@
           <li *ngIf="!isLogin" class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
             <a class="nav-link" aria-current="page" routerLink="/registration">signup</a>
           </li>
-          <li *ngIf="isLogin" class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
-            <a class="nav-link" aria-current="page" routerLink="/registration">logout</a>
+          <li  *ngIf="isLogin" class="nav-item  btn btn-sm btn-outline-Color mx-1 mb-1">
+            <a (click)="logOut()" class="nav-link" aria-current="page" routerLink="/registration">logout</a>
           </li>
         </ul>
       </div>
