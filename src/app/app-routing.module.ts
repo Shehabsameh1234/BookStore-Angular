@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { loginGuard } from './shared/guard/login.guard';
+import { routerGuard } from './shared/guard/router.guard';
 
 
 
@@ -10,11 +12,9 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: 'notFound', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule) },
   { path: 'shop', loadChildren: () => import('./book-shop/book-shop.module').then(m => m.BookShopModule) },
-  { path: 'registration', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule) },
-  { path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
-  { path: "**", component: NotFoundComponent },
-
-
+  { path: 'registration',canActivate:[loginGuard], loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule) },
+  { path: 'checkout', canActivate:[routerGuard], loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
+  { path: "**", component: HomeComponent },
 ];
 
 @NgModule({

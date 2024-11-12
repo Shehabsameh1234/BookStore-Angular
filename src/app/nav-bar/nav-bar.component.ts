@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BasketService } from '../shared/services/basket.service';
 import { RegistrationService } from '../shared/services/registration.service';
 
@@ -8,9 +8,20 @@ import { RegistrationService } from '../shared/services/registration.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  isScrolled = false;
   numberOfItems!: number
-  isLogin!:boolean
-  constructor(private _BasketService: BasketService,private _RegistrationService:RegistrationService) { }
+  isLogin!: boolean
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (window.scrollY > 150) {
+      this.isScrolled = true;
+    } else {
+      this.isScrolled = false;
+    }
+  }
+
+  constructor(private _BasketService: BasketService, private _RegistrationService: RegistrationService) { }
   ngOnInit(): void {
     this._BasketService.numberOfItems.subscribe(() => {
       this.numberOfItems = this._BasketService.numberOfItems.getValue()
@@ -18,15 +29,14 @@ export class NavBarComponent {
     this._RegistrationService.isLogin.subscribe(() => {
       this.isLogin = this._RegistrationService.isLogin.getValue()
     })
-    if(localStorage.getItem("userToken")!=null){
-      this.isLogin=true
+    if (localStorage.getItem("userToken") != null) {
+      this.isLogin = true
     }
-    else this.isLogin=false
+    else this.isLogin = false
   }
-  logOut()
-  {
+  logOut() {
     localStorage.removeItem("userToken")
     this._RegistrationService.isLogin.next(false)
-   
+
   }
 }
