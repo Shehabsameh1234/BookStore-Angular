@@ -11,29 +11,29 @@ export class BasketService {
   items: BehaviorSubject<any> = new BehaviorSubject(null)
   totalAmount: BehaviorSubject<any> = new BehaviorSubject(null)
   numberOfItems: BehaviorSubject<any> = new BehaviorSubject(null)
-
-  ifOpen:boolean=false
-
-  constructor(private _HttpClient: HttpClient) { }
-
+  basketId: any = "basket"
+  constructor(private _HttpClient: HttpClient) {
+    if (localStorage.getItem("userEmail") != null) {
+      this.basketId = localStorage.getItem("userEmail")
+    }
+   }
   addToBasket(productId: number): Observable<any> {
     return this._HttpClient
-      .post(`${this.baseUrl}/Basket?basketId=basket&productId=${productId}`, null)
+      .post(`${this.baseUrl}/Basket?basketId=${this.basketId}&productId=${productId}`, null)
   }
 
   getBasket(): Observable<any> {
     return this._HttpClient
-      .get(`${this.baseUrl}/Basket?id=basket`)
+      .get(`${this.baseUrl}/Basket?id=${this.basketId}`)
   }
 
   deleteItem(productId: number): Observable<any> {
     return this._HttpClient
-      .delete(`${this.baseUrl}/Basket/deleteItem?basketId=basket&productId=${productId}`)
+      .delete(`${this.baseUrl}/Basket/deleteItem?basketId=${this.basketId}&productId=${productId}`)
   }
-  //https://localhost:7185/api/Basket?basketId=basket&productId=8&quantity=5
   updateQuantity(productId: number,quantity:number): Observable<any> {
     return this._HttpClient
-      .put(`${this.baseUrl}/Basket?basketId=basket&productId=${productId}&quantity=${quantity}`,null)
+      .put(`${this.baseUrl}/Basket?basketId=${this.basketId}&productId=${productId}&quantity=${quantity}`,null)
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { BasketService } from 'src/app/shared/services/basket.service';
 import { RegistrationService } from 'src/app/shared/services/registration.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class LogInComponent {
   isLoading: boolean = false
   errorMessege!: string
 
-  constructor(private titleService: Title, private _RegistrationService: RegistrationService, private _router: Router) {
+  constructor(private titleService: Title, private _RegistrationService: RegistrationService, private _router: Router,private _BasketService:BasketService) {
     titleService.setTitle("login")
   }
 
@@ -30,7 +31,7 @@ export class LogInComponent {
       next: (res) => {
         console.log(res);4 
         localStorage.setItem("userToken", res.token)
-        
+        localStorage.setItem("userEmail", res.email)
         this._RegistrationService.isLogin.next(true)
         this.errorMessege = ''
         this._router.navigate(["/home"])

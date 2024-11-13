@@ -36,6 +36,7 @@ export class NavBarComponent {
   }
   logOut() {
     localStorage.removeItem("userToken")
+    localStorage.removeItem("userEmail")
     this._RegistrationService.isLogin.next(false)
 
   }

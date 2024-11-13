@@ -11,16 +11,20 @@ import { Router } from '@angular/router';
 export class BasketComponent {
   items!: Item[]
   totalAmount!: number
+
   constructor(private _BasketService: BasketService, private _router: Router) { }
 
   ngOnInit() {
     this._BasketService.getBasket().subscribe({
       next: (res) => {
+        console.log(res);
+        
         this._BasketService.items.next(res.items)
         this._BasketService.numberOfItems.next(res.items.length)
         this._BasketService.totalAmount.next(res.totalAmount)
       },
       error: () => {
+        this._BasketService.numberOfItems.next(0)
         this._router.navigate(['/notFound']); // Navigate to the error component
       }
     })
@@ -48,7 +52,7 @@ export class BasketComponent {
       this.deleteItem(productId)
       return;
     };
-    const div= document.getElementById(`${productId}`)
+    const div = document.getElementById(`${productId}`)
     this._BasketService.updateQuantity(productId, quantity).subscribe({
       next: (res) => {
         this._BasketService.items.next(res.items)
@@ -56,14 +60,14 @@ export class BasketComponent {
         this._BasketService.numberOfItems.next(res.items.length)
       },
       error: (error) => {
-        if(div){
+        if (div) {
           div.classList.add("alert-div")
         }
-        setTimeout(()=>{
-          if(div){
+        setTimeout(() => {
+          if (div) {
             div.classList.remove("alert-div")
           }
-        },500)
+        }, 500)
       }
     })
 
