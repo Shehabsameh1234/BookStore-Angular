@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { BasketService } from '../shared/services/basket.service';
+import { Item } from '../shared/interfaces/basket';
 
 @Component({
   selector: 'app-checkout',
@@ -7,11 +9,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  constructor(private _router:Router){
+  userEmail!: any
+  numberOfItems!:any
+  items!: Item[]
+  totalAmount!:number
+  constructor(private _BasketService:BasketService) {
 
   }
-  ngOnInit(){
+  ngOnInit() {
+    this.numberOfItems=this._BasketService.numberOfItems.getValue()
     document.getElementById("navbar")?.classList.add("d-none")
+    this.userEmail = localStorage.getItem("userEmail") 
+
+
+    this._BasketService.items.subscribe(() => {
+      this.items = this._BasketService.items.getValue()
+    })
+    this._BasketService.totalAmount.subscribe(() => {
+      this.totalAmount = this._BasketService.totalAmount.getValue()
+    })
+
+
+
   }
 
   ngOnDestroy(): void {

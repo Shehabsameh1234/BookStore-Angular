@@ -1,0 +1,9 @@
+img{
+    max-width: 80px;
+}
+
+#div-items{
+    max-height: 250px;
+    overflow-y: scroll;
+}
+

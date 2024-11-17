@@ -29,8 +29,9 @@ export class LogInComponent {
     this.isLoading = true
     this._RegistrationService.logIn(loginForm.value).subscribe({
       next: (res) => {
-        console.log(res);4 
+        console.log(res); 
         localStorage.setItem("userToken", res.token)
+        localStorage.setItem("userEmail", res.email)
         this._RegistrationService.isLogin.next(true)
         this.errorMessege = ''
         this._router.navigate(["/home"])
