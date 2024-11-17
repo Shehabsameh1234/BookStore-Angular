@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+  constructor(private _router:Router){
 
+  }
+  ngOnInit(){
+    document.getElementById("navbar")?.classList.add("d-none")
+  }
+
+  ngOnDestroy(): void {
+    document.getElementById("navbar")?.classList.remove("d-none")
+  }
 }

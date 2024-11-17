@@ -17,8 +17,6 @@ export class BasketComponent {
   ngOnInit() {
     this._BasketService.getBasket().subscribe({
       next: (res) => {
-        console.log(res);
-        
         this._BasketService.items.next(res.items)
         this._BasketService.numberOfItems.next(res.items.length)
         this._BasketService.totalAmount.next(res.totalAmount)
