@@ -16,40 +16,64 @@
                 logged as {{userEmail}}
             </div>
             <h5 class="text-start">Delivery details</h5>
-            <p class="text-start mt-2">Enter your Details </p>
+            <p *ngIf="!isAdrressTaken" class="text-start mt-2">Enter your Details </p>
 
-            <form class="text-start">
+            <form *ngIf="!isAdrressTaken" class="text-start" (ngSubmit)="saveOrderAddress(orderForm)"
+                [formGroup]="orderForm">
+
+
+                <div>
+                    <input formControlName="basketId" hidden class="form-control " id="basketId" type="text">
+                </div>
                 <div>
                     <label class="" for="firstname">First Name</label>
-                    <input class="form-control " id="firstname" type="text">
+                    <input formControlName="firstName" class="form-control " id="firstname" type="text">
+                    <div class="bg-success text-white p-2  mt-1"
+                        *ngIf="orderForm.get('firstName')?.errors && orderForm.get('firstName')?.touched">
+                        <p *ngIf="orderForm.get('firstName')?.errors?.['required']">first name is required</p>
+                    </div>
                 </div>
                 <div class="my-3">
                     <label class="" for="lastname">Last Name</label>
-                    <input class="form-control" id="lastname" type="text">
+                    <input formControlName="lastName" class="form-control" id="lastname" type="text">
+                    <div class="bg-success text-white p-2  mt-1"
+                        *ngIf="orderForm.get('lastName')?.errors && orderForm.get('lastName')?.touched">
+                        <p *ngIf="orderForm.get('lastName')?.errors?.['required']">last name is required</p>
+                    </div>
                 </div>
                 <div class="">
                     <label class="" for="country">country </label>
-                    <input class="form-control" id="country" type="text">
+                    <input formControlName="country" class="form-control" id="country" type="text">
+                    <div class="bg-success text-white p-2  mt-1"
+                        *ngIf="orderForm.get('country')?.errors && orderForm.get('country')?.touched">
+                        <p *ngIf="orderForm.get('country')?.errors?.['required']">country name is required</p>
+                    </div>
                 </div>
                 <div class="my-3">
                     <label class="" for="city">city </label>
-                    <input class="form-control" id="city" type="text">
+                    <input formControlName="city" class="form-control" id="city" type="text">
+                    <div class="bg-success text-white p-2  mt-1"
+                        *ngIf="orderForm.get('city')?.errors && orderForm.get('city')?.touched">
+                        <p *ngIf="orderForm.get('city')?.errors?.['required']">city name is required</p>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="" for="street">street </label>
-                    <input class="form-control" id="street" type="text">
+                    <input formControlName="street" class="form-control" id="street" type="text">
+                    <div class="bg-success text-white p-2  mt-1"
+                        *ngIf="orderForm.get('street')?.errors && orderForm.get('street')?.touched">
+                        <p *ngIf="orderForm.get('street')?.errors?.['required']">street name is required</p>
+                    </div>
                 </div>
-                <button class="btn btn-dark w-100 mb-3">Save & Continue</button>
+                <button type="submit" [disabled]="orderForm.invalid" class="btn btn-dark w-100 mb-3">Save &
+                    Continue</button>
             </form>
-            <h5 class="text-start mt-3 text-secondary">Delivery method</h5>
-            <hr >
+            <h5 [ngClass]="{'text-dark':isAdrressTaken}" class="text-start mt-3 text-secondary">Delivery method</h5>
+            <hr>
             <h5 class="text-start my-3 text-secondary">Payment</h5>
 
-
-
-
         </div>
-        <div id="a7a" class="col-12 col-md-6 ">
+        <div class="col-12 col-md-6 ">
             <div class="alert alert-secondary" role="alert">
                 <div class="d-flex justify-content-between">
                     <p>Order summary ({{numberOfItems}})</p>
