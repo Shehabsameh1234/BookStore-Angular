@@ -4,6 +4,8 @@ import { BasketService } from '../shared/services/basket.service';
 import { Item } from '../shared/interfaces/basket';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderAddress } from '../shared/interfaces/order';
+import { OrderService } from '../shared/services/order.service';
+import { DeliveryMethod } from '../shared/interfaces/delivery-methods';
 
 @Component({
   selector: 'app-checkout',
@@ -17,7 +19,8 @@ export class CheckoutComponent {
   totalAmount!: number
   isAdrressTaken: boolean = false
   orderAddress!: OrderAddress
-  constructor(private _BasketService: BasketService) {
+  methods!: DeliveryMethod[]
+  constructor(private _BasketService: BasketService, private _orderService: OrderService) {
 
   }
   ngOnInit() {
@@ -25,7 +28,14 @@ export class CheckoutComponent {
     document.getElementById("navbar")?.classList.add("d-none")
     this.userEmail = localStorage.getItem("userEmail")
 
-
+    this._orderService.getDeliveryMethods().subscribe({
+      next: (res) => {
+        this.methods = res
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
     this._BasketService.items.subscribe(() => {
       this.items = this._BasketService.items.getValue()
     })
@@ -42,15 +52,13 @@ export class CheckoutComponent {
     city: new FormControl(null, [Validators.required]),
     street: new FormControl(null, [Validators.required]),
   })
-  saveOrderAddress(orderForm: FormGroup){
+  saveOrderAddress(orderForm: FormGroup) {
     this.orderAddress = orderForm.value
-    console.log(this.orderAddress);
-    
-    this.isAdrressTaken=true
+    this.isAdrressTaken = true
   }
 
   createOrder(orderForm: FormGroup) {
-    
+
   }
 
   ngOnDestroy(): void {

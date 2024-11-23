@@ -7,3 +7,11 @@ img{
     overflow-y: scroll;
 }
 
+.bg{
+    background-color:#e7effc ;
+}
+
+.border-div{
+    border: solid 1px blue;
+}
+

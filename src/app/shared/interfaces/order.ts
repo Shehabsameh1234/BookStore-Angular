@@ -1,4 +1,4 @@
-export interface RootObject {
+export interface Order {
     basketId: string;
     deliveryMethodId: number;
     OrderAddress: OrderAddress;
