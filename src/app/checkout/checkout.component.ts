@@ -13,6 +13,8 @@ import { DeliveryMethod } from '../shared/interfaces/delivery-methods';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+
+  selectedOption: string | null = null;
   userEmail!: any
   numberOfItems!: any
   items!: Item[]
