@@ -78,24 +78,25 @@
             </form>
 
             <h6 [ngClass]="{'text-dark ':isAdrressTaken}" class="text-start mt-3 text-secondary ">Delivery method</h6>
-           <div *ngIf="isAdrressTaken">
-            <div *ngFor="let method of methods"
-            class="d-flex justify-content-between align-items-center bg px-3 mb-2 border-div shadow">
-            <div class="form-check mt-2">
-                <input class="form-check-input " [(ngModel)]="selectedOption" type="radio" [value]="method.cost">
-                <div class="text-start">
-                    <p>{{method.description}}</p>
-                    <p>{{method.deliveryTime}}</p>
+            <div *ngIf="isAdrressTaken&&!isMethodTaken">
+                <div *ngFor="let method of methods"
+                    class="d-flex justify-content-between align-items-center bg px-3 mb-3 border-div shadow">
+                    <div class="form-check mt-2">
+                        <input class="form-check-input " [(ngModel)]="selectedOption " type="radio"
+                            [value]="method.cost">
+                        <div class="text-start">
+                            <p>{{method.description}}</p>
+                            <p>{{method.deliveryTime}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p>{{method.cost}},00EGP</p>
+                    </div>
                 </div>
+                <button type="submit" (click)="isMethodTaken=true" [disabled]="selectedOption==null" class="btn btn-dark w-100 mb-3">Save &
+                    Continue</button>
+                <hr>
             </div>
-            <div>
-                <p>{{method.cost}},00EGP</p>
-            </div>
-        </div>
-        <button type="submit" [disabled]="selectedOption==null" class="btn btn-dark w-100 mb-3">Save &
-            Continue</button>
-        <hr>
-           </div>
 
             <h6 class="text-start my-3 text-secondary">Payment</h6>
 

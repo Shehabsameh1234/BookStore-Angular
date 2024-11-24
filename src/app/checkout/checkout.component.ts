@@ -20,7 +20,9 @@ export class CheckoutComponent {
   items!: Item[]
   totalAmount!: number
   isAdrressTaken: boolean = false
+  isMethodTaken: boolean = false
   orderAddress!: OrderAddress
+  deliveryMethodId!:number
   methods!: DeliveryMethod[]
   constructor(private _BasketService: BasketService, private _orderService: OrderService) {
 
@@ -57,6 +59,9 @@ export class CheckoutComponent {
   saveOrderAddress(orderForm: FormGroup) {
     this.orderAddress = orderForm.value
     this.isAdrressTaken = true
+  }
+  saveMethodId(methodId:number){
+
   }
 
   createOrder(orderForm: FormGroup) {
