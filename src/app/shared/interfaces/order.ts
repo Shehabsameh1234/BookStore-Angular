@@ -9,4 +9,5 @@ export interface Order {
     street: string;
     city: string;
     country: string;
+    basketId:string
   }

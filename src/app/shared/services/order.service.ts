@@ -16,17 +16,21 @@ export class OrderService {
   });
   constructor(private _HttpClient: HttpClient) { }
 
-  createOrder(orderAddress: OrderAddress): Observable<any> {
-    let OrderAddress:any={
-      firstName:orderAddress.firstName,
-      lastName:orderAddress.lastName,
-      country:orderAddress.country,
-      city:orderAddress.city,
-      street:orderAddress.street
+  createOrder(orderAddress: OrderAddress, deliveryMethodId: number): Observable<any> {
+    let Order: any = {
+      deliveryMethodId: deliveryMethodId,
+      basketId: orderAddress.basketId,
+      OrderAddress: {
+        firstName: orderAddress.firstName,
+        lastName: orderAddress.lastName,
+        country: orderAddress.country,
+        city: orderAddress.city,
+        street: orderAddress.street
+      }
     }
-    return this._HttpClient.post(`${this.baseUrl}/Order`,OrderAddress, { headers: this.headers })
+    return this._HttpClient.post(`${this.baseUrl}/Order`, Order, { headers: this.headers })
   }
   getDeliveryMethods(): Observable<any> {
-    return this._HttpClient.get(`${this.baseUrl}/Order/deliveryMethod`,{ headers: this.headers })
+    return this._HttpClient.get(`${this.baseUrl}/Order/deliveryMethod`, { headers: this.headers })
   }
 }

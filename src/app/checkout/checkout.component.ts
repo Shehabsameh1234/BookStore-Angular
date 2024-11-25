@@ -60,13 +60,10 @@ export class CheckoutComponent {
   })
   saveOrderAddress(orderForm: FormGroup) {
     this.OrderAddress = orderForm.value
-    this.isAdrressTaken = true
-    console.log(this.OrderAddress);
-    
+    this.isAdrressTaken = true 
   }
-
   createOrder() {
-    this._orderService.createOrder(this.OrderAddress).subscribe({
+    this._orderService.createOrder(this.OrderAddress,this.selectedOption).subscribe({
       next: (res) => {
         console.log(res);
       },
