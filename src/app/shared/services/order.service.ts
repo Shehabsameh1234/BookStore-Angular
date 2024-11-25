@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { OrderAddress } from '../interfaces/order';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,15 @@ export class OrderService {
   });
   constructor(private _HttpClient: HttpClient) { }
 
-  createOrder(order: any): Observable<any> {
-    return this._HttpClient.post(`${this.baseUrl}/order`, null)
+  createOrder(orderAddress: OrderAddress): Observable<any> {
+    let OrderAddress:any={
+      firstName:orderAddress.firstName,
+      lastName:orderAddress.lastName,
+      country:orderAddress.country,
+      city:orderAddress.city,
+      street:orderAddress.street
+    }
+    return this._HttpClient.post(`${this.baseUrl}/Order`,OrderAddress, { headers: this.headers })
   }
   getDeliveryMethods(): Observable<any> {
     return this._HttpClient.get(`${this.baseUrl}/Order/deliveryMethod`,{ headers: this.headers })

@@ -14,16 +14,17 @@ import { DeliveryMethod } from '../shared/interfaces/delivery-methods';
 })
 export class CheckoutComponent {
 
-  selectedOption: string | null = null;
+  selectedOption: number = 4;
   userEmail!: any
   numberOfItems!: any
   items!: Item[]
   totalAmount!: number
   isAdrressTaken: boolean = false
   isMethodTaken: boolean = false
-  orderAddress!: OrderAddress
-  deliveryMethodId!:number
+  OrderAddress!: OrderAddress
+  deliveryMethodId!: number
   methods!: DeliveryMethod[]
+  methodsLength!: number
   constructor(private _BasketService: BasketService, private _orderService: OrderService) {
 
   }
@@ -35,6 +36,7 @@ export class CheckoutComponent {
     this._orderService.getDeliveryMethods().subscribe({
       next: (res) => {
         this.methods = res
+        this.methodsLength = res.length
       },
       error: (error) => {
         console.log(error);
@@ -57,15 +59,21 @@ export class CheckoutComponent {
     street: new FormControl(null, [Validators.required]),
   })
   saveOrderAddress(orderForm: FormGroup) {
-    this.orderAddress = orderForm.value
+    this.OrderAddress = orderForm.value
     this.isAdrressTaken = true
+    console.log(this.OrderAddress);
+    
   }
-  saveMethodId(methodId:number){
 
-  }
-
-  createOrder(orderForm: FormGroup) {
-
+  createOrder() {
+    this._orderService.createOrder(this.OrderAddress).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
   }
 
   ngOnDestroy(): void {
