@@ -16,6 +16,6 @@ export class PaymentService {
   ///Payment?orderId=25&successUrl=https://localhost:7185/swagger/index.html&cancelUrl=https://localhost:7185/api/Books
   constructor(private _HttpClient: HttpClient) { }
   payOrder(orderId: number): Observable<any> {
-    return this._HttpClient.get(`${this.baseUrl}/Payment?orderId=${orderId}&successUrl=http://localhost:4200/home&cancelUrl=http://localhost:4200/shop/shop`,{ headers: this.headers })
+    return this._HttpClient.get(`${this.baseUrl}/Payment?orderId=${orderId}&successUrl=http://localhost:4200/home/${orderId}&cancelUrl=http://localhost:4200/shop/shop`,{ headers: this.headers })
   }
 }

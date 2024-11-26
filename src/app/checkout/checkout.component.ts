@@ -66,8 +66,6 @@ export class CheckoutComponent {
   createOrder() {
     this._orderService.createOrder(this.OrderAddress, this.selectedOption).subscribe({
       next: (res) => {
-        console.log(res.id);
-        
         this._PaymentService.payOrder(res.id).subscribe({
           next: (res) => {
             window.location.href =res.url
