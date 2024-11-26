@@ -26,6 +26,7 @@ export class CheckoutComponent {
   deliveryMethodId!: number
   methods!: DeliveryMethod[]
   methodsLength!: number
+  isPaying:boolean=false
   constructor(private _BasketService: BasketService, private _orderService: OrderService, private _PaymentService: PaymentService) {
 
   }
@@ -64,6 +65,7 @@ export class CheckoutComponent {
     this.isAdrressTaken = true
   }
   createOrder() {
+    this.isPaying=true
     this._orderService.createOrder(this.OrderAddress, this.selectedOption).subscribe({
       next: (res) => {
         this._PaymentService.payOrder(res.id).subscribe({

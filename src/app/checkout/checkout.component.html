@@ -114,8 +114,10 @@
                 <h4>Review & place order</h4>
                 <p>Review your details above and continue when you're ready.</p>
                 <button (click)="createOrder()" type="submit"  [disabled]="!isMethodTaken&&!isAdrressTaken"
-                class="btn btn-dark w-100 mb-3">Pay &
-                Place Order</button>
+                class="btn btn-dark w-100 mb-3 text-center justify-content-center d-flex"> <div *ngIf="isPaying">
+                    <div class="loader  w-100 text-center"></div>
+                </div>
+                <i  *ngIf="!isPaying">Pay & Place Order</i></button>
             </div>
 
 
