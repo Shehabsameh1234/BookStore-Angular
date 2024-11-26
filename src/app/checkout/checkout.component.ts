@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderAddress } from '../shared/interfaces/order';
 import { OrderService } from '../shared/services/order.service';
 import { DeliveryMethod } from '../shared/interfaces/delivery-methods';
+import { PaymentService } from '../shared/services/payment.service';
 
 @Component({
   selector: 'app-checkout',
@@ -25,7 +26,7 @@ export class CheckoutComponent {
   deliveryMethodId!: number
   methods!: DeliveryMethod[]
   methodsLength!: number
-  constructor(private _BasketService: BasketService, private _orderService: OrderService) {
+  constructor(private _BasketService: BasketService, private _orderService: OrderService, private _PaymentService: PaymentService) {
 
   }
   ngOnInit() {
@@ -60,12 +61,18 @@ export class CheckoutComponent {
   })
   saveOrderAddress(orderForm: FormGroup) {
     this.OrderAddress = orderForm.value
-    this.isAdrressTaken = true 
+    this.isAdrressTaken = true
   }
   createOrder() {
-    this._orderService.createOrder(this.OrderAddress,this.selectedOption).subscribe({
+    this._orderService.createOrder(this.OrderAddress, this.selectedOption).subscribe({
       next: (res) => {
-        console.log(res);
+        console.log(res.id);
+        
+        this._PaymentService.payOrder(res.id).subscribe({
+          next: (res) => {
+            window.location.href =res.url
+          }
+        })
       },
       error: (error) => {
         console.log(error);
