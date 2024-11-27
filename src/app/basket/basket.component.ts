@@ -17,16 +17,13 @@ export class BasketComponent {
   ngOnInit() {
     this._BasketService.getBasket().subscribe({
       next: (res) => {
-        if(res.items.length==0){
-          this._router.navigate(['/notFound']);
-        }
         this._BasketService.items.next(res.items)
         this._BasketService.numberOfItems.next(res.items.length)
         this._BasketService.totalAmount.next(res.totalAmount)
       },
-      error: () => {
+      error: (error) => {
+        console.log(error);
         this._BasketService.numberOfItems.next(0)
-        this._router.navigate(['/notFound']); // Navigate to the error component
       }
     })
     this._BasketService.items.subscribe(() => {
@@ -44,7 +41,6 @@ export class BasketComponent {
         this._BasketService.numberOfItems.next(res.items.length)
       },
       error: (error) => {
-        console.log(error);
       }
     })
   }

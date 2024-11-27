@@ -7,6 +7,7 @@ import { routerGuard } from './shared/guard/router.guard';
 
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: "home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'shop', loadChildren: () => import('./book-shop/book-shop.module').then(m => m.BookShopModule) },
   { path: 'registration',canActivate:[loginGuard], loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule) },
   { path: 'checkout', canActivate:[routerGuard], loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
+  { path: 'paymentStatus', loadChildren: () => import('./payment-status/payment-status.module').then(m => m.PaymentStatusModule) },
   { path: "**", component: HomeComponent },
 ];
 

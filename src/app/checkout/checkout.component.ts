@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { BasketService } from '../shared/services/basket.service';
 import { Item } from '../shared/interfaces/basket';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +6,7 @@ import { OrderAddress } from '../shared/interfaces/order';
 import { OrderService } from '../shared/services/order.service';
 import { DeliveryMethod } from '../shared/interfaces/delivery-methods';
 import { PaymentService } from '../shared/services/payment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -27,7 +27,7 @@ export class CheckoutComponent {
   methods!: DeliveryMethod[]
   methodsLength!: number
   isPaying:boolean=false
-  constructor(private _BasketService: BasketService, private _orderService: OrderService, private _PaymentService: PaymentService) {
+  constructor(private _BasketService: BasketService, private _orderService: OrderService, private _PaymentService: PaymentService,private _Router:Router) {
 
   }
   ngOnInit() {
@@ -41,12 +41,12 @@ export class CheckoutComponent {
         this.methodsLength = res.length
       },
       error: (error) => {
-        console.log(error);
       }
     })
     this._BasketService.items.subscribe(() => {
       this.items = this._BasketService.items.getValue()
     })
+    if(this.items==null || this.items.length==0){this._Router.navigate(['/notFound'])};
     this._BasketService.totalAmount.subscribe(() => {
       this.totalAmount = this._BasketService.totalAmount.getValue()
     })

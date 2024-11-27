@@ -31,5 +31,13 @@ export class BasketService {
     return this._HttpClient
       .put(`${this.baseUrl}/Basket?basketId=basket&productId=${productId}&quantity=${quantity}`,null)
   }
+  deleteBasket(): Observable<any> {
+    return this._HttpClient
+      .delete(`${this.baseUrl}/Basket/?basketId=basket`)
+  }
+  deleteAllItems(): Observable<any> {
+    return this._HttpClient
+      .delete(`${this.baseUrl}/Basket/deleteAllItems/?basketId=basket`)
+  }
 
 }

@@ -33,4 +33,7 @@ export class OrderService {
   getDeliveryMethods(): Observable<any> {
     return this._HttpClient.get(`${this.baseUrl}/Order/deliveryMethod`, { headers: this.headers })
   }
+  getOrder(orderId:number):Observable<any>{
+    return this._HttpClient.get(`${this.baseUrl}/Order/${orderId}`, { headers: this.headers })
+  }
 }

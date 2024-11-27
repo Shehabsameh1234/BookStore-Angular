@@ -6,7 +6,7 @@
                 class="fa-solid fa-arrow-left mt-3"></i></p>
     </div>
     <div class="offcanvas-body">
-        <h4 class="text-center text-Color" *ngIf="items?.length===0">basket is empty</h4>
+        <h4 class="text-center text-Color" *ngIf="items?.length==0||items==null">basket is empty</h4>
         <div class="overflow-x-hidden" *ngFor="let item of items ,let i=index">
             <div  [id]="'row'+item.id" class="row mb-2 row-hover  p-2">
                 <div class="col-5">
@@ -31,11 +31,11 @@
             <hr>
         </div>
     </div>
-    <div *ngIf="items?.length!=0" class=" d-flex justify-content-between p-2  shadow">
+    <div *ngIf="items?.length!=0&&items!=null" class=" d-flex justify-content-between p-2  shadow">
         <h3 class="text-Color">subtotal</h3>
         <h3 class="text-Color ">{{totalAmount}} EGP</h3>
     </div>
-    <div *ngIf="items?.length!=0">
+    <div *ngIf="items?.length!=0&&items!=null">
         <button routerLink="/checkout" class="btn btn-dark text-Color p-3">Checkout</button>
     </div>
 </div>
