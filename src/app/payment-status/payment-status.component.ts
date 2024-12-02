@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BasketService } from '../shared/services/basket.service';
 import { Title } from '@angular/platform-browser';
-import { PaymentService } from '../shared/services/payment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../shared/services/order.service';
 
@@ -18,9 +17,9 @@ export class PaymentStatusComponent {
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.paramMap.get('id');
 
-    this._orderService.getOrder(this.id).subscribe({
-      next: (res) => { console.log(res); },
-      error: (error) => { console.log(error); }
+    this._orderService.updateOrderStaus(this.id).subscribe({
+      next:(res)=>{console.log(res);},
+      error:(error)=>{console.log(error);}
     })
     this._BasketService.deleteAllItems().subscribe({
       next: () => {

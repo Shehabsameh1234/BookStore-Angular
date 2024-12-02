@@ -36,4 +36,7 @@ export class OrderService {
   getOrder(orderId:number):Observable<any>{
     return this._HttpClient.get(`${this.baseUrl}/Order/${orderId}`, { headers: this.headers })
   }
+  updateOrderStaus(orderId:number):Observable<any>{
+    return this._HttpClient.put(`${this.baseUrl}/Order?orderId=${orderId}` ,null,{ headers: this.headers })
+  }
 }
