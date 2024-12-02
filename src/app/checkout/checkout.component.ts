@@ -31,6 +31,7 @@ export class CheckoutComponent {
 
   }
   ngOnInit() {
+    localStorage.setItem("prevUrl",document.URL)
     this.numberOfItems = this._BasketService.numberOfItems.getValue()
     document.getElementById("navbar")?.classList.add("d-none")
     this.userEmail = localStorage.getItem("userEmail")

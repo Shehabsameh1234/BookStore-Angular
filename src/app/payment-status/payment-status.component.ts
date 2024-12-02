@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BasketService } from '../shared/services/basket.service';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { OrderService } from '../shared/services/order.service';
 
 @Component({
@@ -11,12 +11,13 @@ import { OrderService } from '../shared/services/order.service';
 })
 export class PaymentStatusComponent {
   id!: any
-  constructor(private _BasketService: BasketService, private titleService: Title, private _activatedRoute: ActivatedRoute, private _orderService: OrderService) {
+  constructor(private _router:Router,private _BasketService: BasketService, private titleService: Title, private _activatedRoute: ActivatedRoute, private _orderService: OrderService) {
     titleService.setTitle("Payment succeeded")
   }
   ngOnInit(): void {
+    if(localStorage.getItem("prevUrl")==null)
+    {this._router.navigate(['/notFound'])}
     this.id = this._activatedRoute.snapshot.paramMap.get('id');
-
     this._orderService.updateOrderStaus(this.id).subscribe({
       next:(res)=>{console.log(res);},
       error:(error)=>{console.log(error);}
@@ -29,5 +30,8 @@ export class PaymentStatusComponent {
       },
     })
 
+  }
+  ngOnDestroy(){
+    localStorage.removeItem("prevUrl")
   }
 }
