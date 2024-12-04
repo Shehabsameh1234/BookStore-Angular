@@ -3,6 +3,22 @@
         <h4>Thank you , {{order?.buyerEmail.split('@')[0] }}</h4>
         <p>you will receive a confirmation email soon</p>
         <p>order number : {{order?.id}}</p>
-
+        <div class="shadow border overflow-hidden">
+            <div *ngFor="let item of items ,let i=index" class="row">
+                <div class="col-md-6 col-12">
+                    <img  [src]="item.pictureUrl" [alt]="item.productName">
+                    <div class="d-inline-block mt-sm-2 text-start">
+                        <p>{{item.productName}}</p>
+                        <p>{{item.price}},00EGP</p>
+                        <p>QTY : {{item.quantity}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <p>Total : {{item.price*item.quantity}},00EGP</p>
+                </div>
+                <hr class="mt-2">
+            </div>
+            
+        </div>
     </div>
 </section>
