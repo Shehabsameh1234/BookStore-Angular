@@ -47,21 +47,21 @@
             <div class="text-end p-1">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-0">
+            <div class="modal-body">
                 <div class="row  container-fluid">
-                    <div class="col-7"><img *ngIf="book?.pictureUrl" class="w-100 mb-2" [src]="book.pictureUrl" /></div>
-                    <div class="col-5">
-                        Name: {{ book?.name || 'N/A' }}
-                        <p>Price : {{book?.price || 'N/A'}} EGP</p>
-                        <p>Author : {{book?.author || 'N/A'}}</p>
-                        <p>Category : {{book?.category || 'N/A'}}</p>
-
-                        <p class="mt-3">description : {{book?.description || 'N/A'}}</p>
-                        <div class="mb-5">
+                    <div class="col-6"><img *ngIf="book?.pictureUrl" class="w-100 " [src]="book.pictureUrl" /></div>
+                    <div class="col-6">
+                        <h5>{{ book?.name || 'N/A' }}</h5>
+                        <p>{{book?.price || 'N/A'}},00EGP</p>
+                        <p>{{book?.author || 'N/A'}}</p>
+                        <p>{{book?.category || 'N/A'}}</p>
+                        <p class="">{{book?.description || 'N/A'}}</p>
+                        <div class="mb-2">
                             <label for="#input">In Stock</label>
                             <input id="input" type="text" class="form-control w-25" [value]="book?.inStock || 0"
                                 disabled>
                         </div>
+                        <a data-bs-dismiss="modal" aria-label="Close" [routerLink]="['/shop/bookinfo',book?.id]">view more details</a>
                     </div>
 
                 </div>

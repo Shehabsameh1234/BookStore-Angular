@@ -10,7 +10,7 @@
         <div class="overflow-x-hidden" *ngFor="let item of items ,let i=index">
             <div  [id]="'row'+item.id" class="row mb-2 row-hover  p-2">
                 <div class="col-5">
-                    <img class="w-75 text-pointer" [routerLink]="['/shop/bookinfo',item.id]" [src]="item.pictureUrl"
+                    <img class="w-75 "  [src]="item.pictureUrl"
                         [alt]="item.name">
                 </div>
                 <div class="col-7 text-Color">
@@ -36,6 +36,6 @@
         <h3 class="text-Color ">{{totalAmount}} EGP</h3>
     </div>
     <div *ngIf="items?.length!=0&&items!=null">
-        <button routerLink="/checkout" class="btn btn-dark text-Color p-3">Checkout</button>
+        <button data-bs-dismiss="offcanvas" aria-label="Close" routerLink="/checkout" class="btn btn-dark text-Color p-3">Checkout</button>
     </div>
 </div>
