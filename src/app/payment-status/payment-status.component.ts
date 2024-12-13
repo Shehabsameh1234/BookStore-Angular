@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { OrderService } from '../shared/services/order.service';
 import { Order, OrderAddress, OrderItem } from '../shared/interfaces/order';
+import { PaymentService } from '../shared/services/payment.service';
 
 @Component({
   selector: 'app-payment-status',
@@ -15,7 +16,7 @@ export class PaymentStatusComponent {
   order!: any
   items!:OrderItem[]
   deliveryAddress!:OrderAddress | null;
-  constructor(private _router: Router, private _BasketService: BasketService, private titleService: Title, private _activatedRoute: ActivatedRoute, private _orderService: OrderService) {
+  constructor(private _paymentService:PaymentService,private _router: Router, private _BasketService: BasketService, private titleService: Title, private _activatedRoute: ActivatedRoute, private _orderService: OrderService) {
     titleService.setTitle("Payment succeeded")
   }
   ngOnInit(): void {
@@ -23,13 +24,15 @@ export class PaymentStatusComponent {
     this.id = this._activatedRoute.snapshot.paramMap.get('id');
     this._orderService.updateOrderStaus(this.id).subscribe({
       next: (res) => {
-        console.log(res);
-        
         this.order = res
         this.deliveryAddress=res.orderAddress
         this.items=res.orderItems
       },
       error: (error) => { }
+    })
+    this._paymentService.sendEmail(this.id).subscribe({
+      next:(res)=>{console.log(res);},
+      error:(error)=>{console.log(error);}
     })
     this._BasketService.deleteAllItems().subscribe({
       next: () => {

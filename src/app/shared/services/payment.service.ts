@@ -20,4 +20,7 @@ export class PaymentService {
   payOrder(orderId: number): Observable<any> {
     return this._HttpClient.get(`${this.baseUrl}/Payment?orderId=${orderId}&successUrl=${this.frontUrl}/paymentStatus/paymentStatus/${orderId}&cancelUrl=${this.frontUrl}/checkout`, { headers: this.headers })
   }
+  sendEmail(orderId:number):Observable<any>{
+    return this._HttpClient.post(`${this.baseUrl}/Payment/sendEmail?orderId=${orderId}`,null,{ headers: this.headers })
+    }
 }
