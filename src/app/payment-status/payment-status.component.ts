@@ -14,25 +14,27 @@ import { PaymentService } from '../shared/services/payment.service';
 export class PaymentStatusComponent {
   id!: any
   order!: any
-  items!:OrderItem[]
-  deliveryAddress!:OrderAddress | null;
-  constructor(private _paymentService:PaymentService,private _router: Router, private _BasketService: BasketService, private titleService: Title, private _activatedRoute: ActivatedRoute, private _orderService: OrderService) {
+  items!: OrderItem[]
+  deliveryAddress!: OrderAddress | null;
+  constructor(private _paymentService: PaymentService, private _router: Router, private _BasketService: BasketService, private titleService: Title, private _activatedRoute: ActivatedRoute, private _orderService: OrderService) {
     titleService.setTitle("Payment succeeded")
   }
   ngOnInit(): void {
-    if (localStorage.getItem("prevUrl") == null) { this._router.navigate(['/notFound']) ; return }
+    if (localStorage.getItem("prevUrl") == null) { this._router.navigate(['/notFound']); return }
     this.id = this._activatedRoute.snapshot.paramMap.get('id');
     this._orderService.updateOrderStaus(this.id).subscribe({
       next: (res) => {
         this.order = res
-        this.deliveryAddress=res.orderAddress
-        this.items=res.orderItems
+        this.deliveryAddress = res.orderAddress
+        this.items = res.orderItems
       },
-      error: (error) => { }
+      error: () => {
+        this._router.navigate(['/notFound']); return
+      }
     })
     this._paymentService.sendEmail(this.id).subscribe({
-      next:(res)=>{console.log(res);},
-      error:(error)=>{console.log(error);}
+      next: () => { },
+      error: () => { this._router.navigate(['/notFound']); return }
     })
     this._BasketService.deleteAllItems().subscribe({
       next: () => {
