@@ -7,7 +7,7 @@ import { Books } from '../interfaces/books';
 export class SearchPipe implements PipeTransform {
 
   transform(books:Books[],searchTerm:string): Books[] {
-    return books.filter((book)=>book.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
+    return books?.filter((book)=>book.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
   }
 
 }

@@ -27,8 +27,6 @@ export class HomeComponent {
   ngOnInit(): void {
     this._BookService.getAllBooks().subscribe({
       next: (res) => {
-        console.log(res);
-        
         this.books = res.data
         this.pageIndex = res.pageIndex
         this.numberOfPages = Math.ceil(res.count / res.pageSize)
