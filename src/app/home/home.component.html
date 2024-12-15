@@ -19,7 +19,7 @@
                 <span class="author-color">{{book.author}}</span>
             </div>
             <p class="px-3">{{book.name}}</p>
-            <p>{{book.price}} EGP</p>
+            <p>{{book.price| currency:"EGP"}}</p>
             <button (click)="addToBasket(book.id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                 aria-controls="offcanvasWithBothOptions" class="btn btn-dark w-100" [disabled]="book.inStock===0"> {{
                 book.inStock === 0 ? 'Out

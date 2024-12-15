@@ -85,14 +85,14 @@
                 <div *ngFor="let method of methods"
                     class="d-flex justify-content-between align-items-center bg px-3 mb-3 border-div shadow">
                     <div class="form-check mt-2">
-                        <input class="form-check-input " [(ngModel)]="selectedOption " type="radio" [value]="method.id">
+                        <input class="form-check-input " [(ngModel)]="selectedOption" type="radio" [value]="method.id">
                         <div class="text-start">
                             <p>{{method.description}}</p>
                             <p>{{method.deliveryTime}}</p>
                         </div>
                     </div>
                     <div>
-                        <p>{{method.cost}},00EGP</p>
+                        <p>{{method.cost| currency:"EGP"}}P</p>
                     </div>
                 </div>
                 <button type="submit" (click)="isMethodTaken=true" [disabled]="selectedOption==null"
@@ -120,8 +120,6 @@
                 <i  *ngIf="!isPaying">Pay & Place Order</i></button>
             </div>
 
-
-
         </div>
         <div class="col-12 col-md-6 ">
             <div class="alert alert-secondary" role="alert">
@@ -139,26 +137,26 @@
                                 <p>Qty : {{item.quantity}}</p>
                             </div>
                         </div>
-                        <p>{{item.price}},00 EGP</p>
+                        <p>{{item.price | currency:"EGP"}}</p>
                     </div>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
                     <p>subtotal</p>
-                    <p>{{totalAmount}},00 EGP</p>
+                    <p>{{totalAmount| currency:"EGP"}}</p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Delivery</p>
                     <p *ngIf="methodsLength">{{ selectedOption && methods[selectedOption - 1] ? methods[selectedOption -
-                        1].cost : '0' }}
-                        EGP</p>
+                        1].cost : '0'  | currency:"EGP"}}
+                        </p>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
                     <h4>total</h4>
                     <p *ngIf="methodsLength">{{ totalAmount + (methods[selectedOption - 1].cost ? +
                         methods[selectedOption - 1].cost : 0)
-                        }},00EGP</p>
+                        | currency:"EGP"}}</p>
                 </div>
             </div>
         </div>

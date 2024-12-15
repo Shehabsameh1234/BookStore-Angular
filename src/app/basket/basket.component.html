@@ -18,7 +18,7 @@
                         <h5>{{item.name}}</h5>
                         <i (click)="deleteItem(item.id)" class="fa-solid fa-xmark text-pointer"></i>
                     </div>
-                    <p>{{item.price}},00EGP</p>
+                    <p>{{item.price | currency :'EGP'}}</p>
                     <p [id]="item.id"><i class="fa-solid fa-circle-exclamation"></i> only {{item.inStock}} left in stock</p>
 
                     <div class="amount d-flex justify-content-between px-2">
@@ -33,7 +33,7 @@
     </div>
     <div *ngIf="items?.length!=0&&items!=null" class=" d-flex justify-content-between p-2  shadow">
         <h3 class="text-Color">subtotal</h3>
-        <h3 class="text-Color ">{{totalAmount}} EGP</h3>
+        <h3 class="text-Color ">{{totalAmount | currency :'EGP'}} EGP</h3>
     </div>
     <div *ngIf="items?.length!=0&&items!=null">
         <button data-bs-dismiss="offcanvas" aria-label="Close" routerLink="/checkout" class="btn btn-dark text-Color p-3">Checkout</button>

@@ -124,7 +124,7 @@
                     <div class="col-6"><img *ngIf="book?.pictureUrl" class="w-100 " [src]="book.pictureUrl" /></div>
                     <div class="col-6">
                         <h5>{{ book?.name || 'N/A' }}</h5>
-                        <p>{{book?.price || 'N/A'}},00EGP</p>
+                        <p>{{book?.price || 'N/A' | currency:"EGP"}}</p>
                         <p>{{book?.author || 'N/A'}}</p>
                         <p>{{book?.category || 'N/A'}}</p>
                         <p class="">{{book?.description || 'N/A'}}</p>
