@@ -18,6 +18,7 @@ export class HomeComponent {
   numberOfPages!: number
   pageIndex!: number
   book!: any
+  searchTerm:string=''
 
 
   constructor(private titleService: Title, private _BookService: BookService, private _BasketService: BasketService) {
@@ -26,6 +27,8 @@ export class HomeComponent {
   ngOnInit(): void {
     this._BookService.getAllBooks().subscribe({
       next: (res) => {
+        console.log(res);
+        
         this.books = res.data
         this.pageIndex = res.pageIndex
         this.numberOfPages = Math.ceil(res.count / res.pageSize)

@@ -5,10 +5,14 @@
 <h3 class="text-center second-Color mt-3">All Books</h3>
 
 <section class="container p-5  mt-2">
+    <div>
+        <input placeholder="Search By Name..." [(ngModel)]="searchTerm" class="form-control w-100 mx-auto" type="text">
+        
+    </div>
     <h2 *ngIf="ifError" class="text-center mt-5">!oops somthing error , please <a class="text-Color"
             (click)="reloadPage()">reload page</a></h2>
     <div class="row text-center p-3 ">
-        <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let book of books ,let i=index">
+        <div class="col-md-6 col-12 col-lg-3 my-4  " *ngFor="let book of books |search:searchTerm ,let i=index">
             <div class="position-relative">
                 <div class="position-relative">
                     <img [routerLink]="['/shop/bookinfo',book.id]" class="text-pointer" [src]="book.pictureUrl"
